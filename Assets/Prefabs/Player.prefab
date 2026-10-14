@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1516454229718481148}
   - component: {fileID: 6032531048810139111}
   - component: {fileID: 4444445200854113741}
-  - component: {fileID: 3096560059495401023}
-  - component: {fileID: 4835747525942523014}
+  - component: {fileID: 5316594236908209710}
+  - component: {fileID: 5242079563106266025}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!61 &4444445200854113741
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
---- !u!114 &3096560059495401023
+--- !u!114 &5316594236908209710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,8 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   damageMask:
     serializedVersion: 2
-    m_Bits: 8
---- !u!114 &4835747525942523014
+    m_Bits: 0
+  explosionEffect: {fileID: 8130748834579384420, guid: 88a7958e455c9f141bd3ce213dd6c17a, type: 3}
+  deathSound: {fileID: 8300000, guid: 64a302bd98146684883699c30059c2d2, type: 3}
+--- !u!114 &5242079563106266025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,8 +194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 310594811314049290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9b8edb16ff24a00b214e022cb49de06, type: 3}
+  m_Script: {fileID: 11500000, guid: adb2b5fc888e40f295332228e5c0f6e2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::FootPlayerMovement
   rb: {fileID: 6032531048810139111}
-  movementSpeed: 900
+  player: {fileID: 5316594236908209710}
+  movementSpeed: 1
+  jumpSpeed: 100

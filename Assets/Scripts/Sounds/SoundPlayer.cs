@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
+using CustomUtility;
+using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class SoundPlayer : MonoBehaviour, IDelayedDestruction
 {
-    [SerializeField] private AudioClip audioClip;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
     private float destructionDelay;
 
     public float DestructionDelay
@@ -24,19 +26,41 @@ public class SoundPlayer : MonoBehaviour, IDelayedDestruction
         CheckReferences();
     }
 
-    private void CheckReferences()
-    {
-        
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(DestroyObjects());
-    }
-
     private void OnDisable()
     {
         StopCoroutine(DestroyObjects());
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    public static SoundPlayer CreateInstance()
+    {
+        SoundPlayer soundPlayer = new GameObject(nameof(SoundPlayer)).AddComponent<SoundPlayer>();
+        return soundPlayer;
+    }
+
+    public static SoundPlayer CreateInstance(AudioClip audioClip)
+    {
+        SoundPlayer player = CreateInstance();
+        player.audioSource.clip = audioClip;
+        return player;
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (audioSource == null || clip == null) return;
+        audioSource.clip = clip;
+        audioSource.Play();
+        DestructionDelay = clip.length;
+        StartCoroutine(DestroyObjects());
+    }
+    
+    private void CheckReferences()
+    {
+        ReferenceValidator.CheckComponentForNull(ref audioSource, gameObject, nameof(audioSource));
     }
 
     public IEnumerator DestroyObjects()
