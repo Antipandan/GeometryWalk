@@ -4,18 +4,14 @@ using UnityEngine;
 public sealed class FootPlayerMovement : PlayerMovement
 {
     [SerializeField] private LayerMask validGroundLayers;
+    [SerializeField] private float rotationSpeed = GameConstants.defaultRotationSpeed;
     private bool isGrounded = false;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        SubscribeEvents();
-    }
 
     protected override void Update()
     {
         MoveForward();
-        if (jumpAction.WasPerformedThisFrame() && isGrounded) Jump();
+        if (jumpAction.IsPressed() && isGrounded) Jump();
+        if (!isGrounded) RotatePlayerMidAir();
     }
 
     private void UpdateIsGrounded(Collision2D collision2D)
@@ -23,12 +19,27 @@ public sealed class FootPlayerMovement : PlayerMovement
         if (!isGrounded && validGroundLayers.HasLayer(collision2D.gameObject.layer))
         {
             isGrounded = true;
+            ClampRotation();
         }
     }
 
-    private void SubscribeEvents()
+    private void ClampRotation()
+    {
+        float newRotation = ((int)gameObject.transform.rotation.eulerAngles.z / 90) * 90f;
+        Debug.Log($"rotation: {newRotation}");
+        Quaternion rotation = gameObject.transform.rotation;
+        rotation.eulerAngles = new Vector3(0, 0, newRotation);
+        gameObject.transform.rotation = rotation;
+    }
+
+    protected override void SubscribeEvents()
     {
         player.OnCollision2D += UpdateIsGrounded;
+    }
+
+    private void RotatePlayerMidAir()
+    {
+        gameObject.transform.Rotate(0,0, -rotationSpeed * Time.deltaTime);
     }
 
     protected override void Jump()

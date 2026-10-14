@@ -5,6 +5,7 @@ using System.Numerics;
 using CustomUtility;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public abstract class PlayerMovement : MonoBehaviour
 {
@@ -22,7 +23,36 @@ public abstract class PlayerMovement : MonoBehaviour
     {
         CheckReferences();
     }
+    
 
+    protected virtual void OnEnable()
+    {
+        GetInputs();
+        SubscribeEvents();
+    }
+
+    protected virtual void Update()
+    {
+        MoveForward();
+        if (jumpAction.IsPressed()) Jump();
+        ClampLinearVelocity();
+    }
+
+    protected virtual void OnDisable()
+    {
+        UnSubscribeEvents();
+    }
+
+    protected virtual void SubscribeEvents()
+    {
+        
+    }
+
+    protected virtual void UnSubscribeEvents()
+    {
+        
+    }
+    
     protected virtual void GetInputs()
     {
         jumpAction = InputSystem.actions.FindAction("Jump");
@@ -36,12 +66,6 @@ public abstract class PlayerMovement : MonoBehaviour
                 ErrorSeverity.Warning, gameObject);
         }
     }
-
-    protected virtual void OnEnable()
-    {
-        GetInputs();
-    }
-
     protected virtual void CheckReferences()
     {
         ReferenceValidator.CheckComponentForNull(ref rb, gameObject, nameof(rb));
@@ -51,19 +75,12 @@ public abstract class PlayerMovement : MonoBehaviour
     protected virtual void MoveForward()
     {
         float movementSpeedX = movementSpeed * Time.deltaTime;
-        gameObject.transform.Translate(movementSpeedX, 0, 0);
+        gameObject.transform.position += Vector3.right * movementSpeedX;
     }
 
     protected virtual void ClampLinearVelocity()
     {
         rb.linearVelocity = rb.linearVelocity.Clamp(GameConstants.minVelocity, GameConstants.maxVelocity);
-    }
-
-    protected virtual void Update()
-    {
-        MoveForward();
-        if (jumpAction.IsPressed()) Jump();
-        ClampLinearVelocity();
     }
 
     protected virtual void Jump()
