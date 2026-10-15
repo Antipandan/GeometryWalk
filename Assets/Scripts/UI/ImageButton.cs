@@ -35,7 +35,7 @@ public class ButtonImage : MonoBehaviour
             if (loadedSprite == null) Logging.LogNullReferenceError("sprite", ErrorSeverity.Warning, image.gameObject, () => {
                 Debug.Log("This asset could not be found");});
             image.sprite ??= loadedSprite;
-            image.color = Color.black;
+            image.color = Color.white;
         }
     }
 
@@ -43,10 +43,11 @@ public class ButtonImage : MonoBehaviour
     {
         Image icon = go.AddComponent<Image>();
         Sprite loadedIcon = AssetDatabase.LoadAssetAtPath<Sprite>
-            ("Assets/TWD/FreeButtonSet/Textures/icons/128x128/play.png");
+            ("Assets/TWD/FreeButtonSet/Textures/icons/128x128/repeat.png");
         if (loadedIcon == null) Logging.LogNullReferenceError("sprite", ErrorSeverity.Warning, icon.gameObject, () => {
             Debug.Log("This asset could not be found");});
         icon.sprite ??= loadedIcon;
+        icon.color = Color.black;
     }
 
     #endregion
