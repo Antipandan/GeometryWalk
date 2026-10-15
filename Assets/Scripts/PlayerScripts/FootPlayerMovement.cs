@@ -25,8 +25,8 @@ public sealed class FootPlayerMovement : PlayerMovement
 
     private void ClampRotation()
     {
+        // ReSharper disable once PossibleLossOfFraction
         float newRotation = ((int)gameObject.transform.rotation.eulerAngles.z / 90) * 90f;
-        Debug.Log($"rotation: {newRotation}");
         Quaternion rotation = gameObject.transform.rotation;
         rotation.eulerAngles = new Vector3(0, 0, newRotation);
         gameObject.transform.rotation = rotation;
