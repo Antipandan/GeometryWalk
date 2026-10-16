@@ -12,7 +12,7 @@ namespace Editor
         [MenuItem("GameObject/UI (Canvas)/Button - Image", false, 10)]
         public static void CreateImageButton(MenuCommand command)
         {
-            ButtonImage buttonImage = ButtonImage.CreateInstance();
+            GameObject buttonImage = ButtonImage.CreateInstance();
             // dont know
             GameObject parent = (GameObject)command.context;
             // parent if needed

@@ -1,19 +1,16 @@
 ﻿using System;
 using CustomUtility;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(RectTransform), typeof(CanvasRenderer), typeof(Button))]
-public class ButtonImage : MonoBehaviour
+public static class ButtonImage
 {
     #region StaticMethods
-
-    public static ButtonImage CreateInstance()
+    
+    public static GameObject CreateInstance()
     {
-        ButtonImage image = new GameObject("ButtonImage").AddComponent<ButtonImage>();
+        GameObject image = new GameObject("ButtonImage");
         AddNecessaryComponents(image);
         GameObject child = new GameObject("Icon");
         AddNecessaryChildComponents(child);
@@ -22,8 +19,11 @@ public class ButtonImage : MonoBehaviour
         return image;
     }
 
-    private static void AddNecessaryComponents(ButtonImage button)
+    private static void AddNecessaryComponents(GameObject button)
     {
+        button.AddComponent<RectTransform>();
+        button.AddComponent<CanvasRenderer>();
+        button.AddComponent<Button>();
         Image image = button.gameObject.AddComponent<Image>();
         configure(image);
         return;
@@ -31,9 +31,9 @@ public class ButtonImage : MonoBehaviour
         static void configure(Image image)
         {
             Sprite loadedSprite = AssetDatabase.LoadAssetAtPath<Sprite>
-                ("Assets/TWD/FreeButtonSet/Textures/other/universal_panel_40.png");
+                (GameConstants.defaultBackGroundPath);
             if (loadedSprite == null) Logging.LogNullReferenceError("sprite", ErrorSeverity.Warning, image.gameObject, () => {
-                Debug.Log("This asset could not be found");});
+                Debug.Log("This asset could not be found", image.gameObject);});
             image.sprite ??= loadedSprite;
             image.color = Color.white;
         }
@@ -43,9 +43,9 @@ public class ButtonImage : MonoBehaviour
     {
         Image icon = go.AddComponent<Image>();
         Sprite loadedIcon = AssetDatabase.LoadAssetAtPath<Sprite>
-            ("Assets/TWD/FreeButtonSet/Textures/icons/128x128/repeat.png");
+            (GameConstants.defaultIconPath);
         if (loadedIcon == null) Logging.LogNullReferenceError("sprite", ErrorSeverity.Warning, icon.gameObject, () => {
-            Debug.Log("This asset could not be found");});
+            Debug.Log("This asset could not be found", icon.gameObject);});
         icon.sprite ??= loadedIcon;
         icon.color = Color.black;
     }
