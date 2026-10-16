@@ -20,8 +20,8 @@ public static class EventBus<T>
         foreach (IEventBindings<T> binding in bindings)
         {
             if (binding.BindingType != typeof(T)) continue;
-            binding.OnEvent.Invoke(parameter);
-            if (raiseAll) binding.OnEventNoArgs.Invoke();
+            binding.PublishOnEvent(parameter);
+            if (raiseAll) binding.PublishOnEventNoArgs();
         }
     }
 
@@ -29,7 +29,7 @@ public static class EventBus<T>
     {
         foreach (IEventBindings<T> binding in bindings)
         {
-            binding.OnEventNoArgs.Invoke();
+            binding.PublishOnEventNoArgs();
         }
     }
 }

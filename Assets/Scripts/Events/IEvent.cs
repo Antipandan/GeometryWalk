@@ -1,7 +1,6 @@
-﻿public interface IEvent
+﻿
+// wrapper
+public interface IEvent
 {
-    public void test()
-    {
-        
-    }
+    
 }

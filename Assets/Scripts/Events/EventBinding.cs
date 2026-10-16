@@ -1,12 +1,12 @@
 ﻿using System;
 
-public class EventBinding<T> : IEventBindings<T> where T : IEvent
+public class EventBinding<T> : IEventBindings<T>
 {
-    private Action<T> onEvent;
-    private Action onEventNoArgs;
+    private event Action<T> onEvent;
+    private event Action onEventNoArgs;
     
-    public Action<T> OnEvent { get; set; }
-    public Action OnEventNoArgs { get; set; }
+    event Action<T> IEventBindings<T>.OnEvent { add => onEvent += value; remove => onEvent -= value; }
+    event Action IEventBindings<T>.OnEventNoArgs { add => onEventNoArgs += value; remove => onEventNoArgs -= value; }
     
     public EventBinding(Action<T> @event)
     {
@@ -44,6 +44,16 @@ public class EventBinding<T> : IEventBindings<T> where T : IEvent
     {
         if (ensureSingletonDelegate) RemoveDelegate(@delegate);
         onEventNoArgs += @delegate;
+    }
+
+    public void PublishOnEventNoArgs()
+    {
+        onEventNoArgs?.Invoke();
+    }
+
+    public void PublishOnEvent(T arg)
+    {
+        onEvent?.Invoke(arg);
     }
 
 }
