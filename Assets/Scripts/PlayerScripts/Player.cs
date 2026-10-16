@@ -8,10 +8,26 @@ public class Player : MonoBehaviour
     [SerializeField] private EffectsImplementation explosionEffect;
     [SerializeField] private AudioClip deathSound;
     public event Action<Collision2D> OnCollision2D;
-
+    private EventBinding<PlayerDeathEvent> deathEvent;
     private void Awake()
     {
         CheckReferences();
+    }
+
+    private void OnEnable()
+    {
+        deathEvent = new EventBinding<PlayerDeathEvent>(OnPlayerDied);
+        EventBus<PlayerDeathEvent>.Register(deathEvent);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<PlayerDeathEvent>.DeRegister(deathEvent);
+    }
+
+    private static void OnPlayerDied()
+    {
+        Debug.Log($"player dead");
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -32,6 +48,7 @@ public class Player : MonoBehaviour
     {
         PlayDeathSound();
         SpawnExplosionEffect();
+        EventBus<PlayerDeathEvent>.Raise();
         Destroy(gameObject);
     }
 
