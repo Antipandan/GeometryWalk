@@ -34,7 +34,7 @@ public sealed class FootPlayerMovement : PlayerMovement
 
     protected override void SubscribeEvents()
     {
-        player.OnCollision2D += UpdateIsGrounded;
+        EventBus<Collision2D>.Register(new EventBinding<Collision2D>(UpdateIsGrounded));
     }
 
     private void RotatePlayerMidAir()

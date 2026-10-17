@@ -23,7 +23,6 @@ public abstract class PlayerMovement : MonoBehaviour
     {
         CheckReferences();
     }
-    
 
     protected virtual void OnEnable()
     {

@@ -1265,6 +1265,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1704620318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 310594811314049290, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+  m_PrefabInstance: {fileID: 2973362111098771329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1704620321 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4444445200854113741, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+  m_PrefabInstance: {fileID: 2973362111098771329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1704620324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704620318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b232441d78c409b9637362ae58146c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderHandler
+  onCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  playerCollider: {fileID: 1704620321}
+  damageMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &1968874978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1484,6 +1513,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5242079563106266025, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242079563106266025, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: UpwardsForce
       value: 11
       objectReference: {fileID: 0}
@@ -1494,6 +1527,10 @@ PrefabInstance:
     - target: {fileID: 5242079563106266025, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: validGroundLayers.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316594236908209710, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5316594236908209710, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: damageMask.m_Bits
@@ -1558,7 +1595,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 310594811314049290, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1704620324}
   m_SourcePrefab: {fileID: 100100000, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
 --- !u!1001 &7120915263013631557
 PrefabInstance:
