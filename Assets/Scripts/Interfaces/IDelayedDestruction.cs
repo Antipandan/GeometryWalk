@@ -28,10 +28,16 @@ public interface IDelayedDestruction
         GameObject.transform.position = position;
         return this;
     }
-
+    
     public static IDelayedDestruction CreateInstance(IDelayedDestruction impl)
     {
         Object.Instantiate(impl.GameObject);
+        return impl;
+    }
+
+    public static IDelayedDestruction CreateInstance(IDelayedDestruction impl, Vector3 position)
+    {
+        Object.Instantiate(impl.GameObject, position, impl.GameObject.transform.rotation);
         return impl;
     }
 

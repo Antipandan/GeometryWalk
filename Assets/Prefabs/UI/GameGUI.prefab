@@ -213,9 +213,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8007682734113439865}
     m_Modifications:
+    - target: {fileID: 2228436565654080596, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b148167244e305a42b332c5e3103a0f3, type: 3}
     - target: {fileID: 2798887567891943845, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
       propertyPath: m_Name
       value: PauseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785748634184940086, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785748634184940086, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7317469583526224286, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
       propertyPath: m_Pivot.x
@@ -300,10 +312,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2798887567891943845, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2714818622202998892}
   m_SourcePrefab: {fileID: 100100000, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+--- !u!114 &1540296756074561138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7859198314838230493, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+  m_PrefabInstance: {fileID: 8678788905984244655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820391500086405642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &2161058588209240625 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7317469583526224286, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
   m_PrefabInstance: {fileID: 8678788905984244655}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6820391500086405642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2798887567891943845, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+  m_PrefabInstance: {fileID: 8678788905984244655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2714818622202998892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820391500086405642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d542eabcdd0c4c7ea4a2c30301df17d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseButton
+  restartButton: {fileID: 1540296756074561138}
+  icon: {fileID: 7394276964259280891}
+  images: {fileID: 11400000, guid: 9d7432e94cf38564f872476febfb7b20, type: 2}
+--- !u!114 &7394276964259280891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2228436565654080596, guid: 08f4e34d7fda37242a2514c82207dff2, type: 3}
+  m_PrefabInstance: {fileID: 8678788905984244655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image

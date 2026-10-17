@@ -74,9 +74,12 @@ public class Player : MonoBehaviour
 
     private void SpawnExplosionEffect()
     {
+        Vector3 position = gameObject.transform.position;
+        Debug.Log($"position: {position}");
+        Debug.Log($"gameObject position: {gameObject.transform.position}");
         if (explosionEffect != null)
         {
-            IDelayedDestruction.CreateInstance(explosionEffect).ChangePosition(transform.position);
+            IDelayedDestruction.CreateInstance(explosionEffect, position);
         }
     }
 
