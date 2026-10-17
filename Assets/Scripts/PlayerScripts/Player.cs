@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using CustomUtility;
+using Unity.Mathematics;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     public event Action<Collision2D> OnCollision2D;
     private EventBinding<PlayerDeathEvent> deathEvent;
+    private float playerColliderSize;
     private void Awake()
     {
         CheckReferences();
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     {
         deathEvent = new EventBinding<PlayerDeathEvent>(OnPlayerDied);
         EventBus<PlayerDeathEvent>.Register(deathEvent);
+        playerColliderSize = GetComponent<BoxCollider2D>().size.x;
     }
 
     private void OnDisable()
@@ -32,11 +35,22 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     { 
+        CheckCollisionDifferential(other);
         PublishOnCollisionEnter2D(other);
-        if (damageMask.HasLayer(other.gameObject.layer))
+        if (damageMask.HasLayer(other.gameObject.layer) || CheckCollisionDifferential(other))
         {
             KillPlayer();    
         }
+    }
+
+    private bool CheckCollisionDifferential(Collision2D collision)
+    {
+        Transform other = collision.gameObject.transform;
+        if (other == null) return false;
+        Vector2 dir = gameObject.transform.position - other.position;
+        float dotProduct = Vector2.Dot(Vector2.up, dir);
+        float offsetDotProduct = dotProduct - playerColliderSize / 2f;
+        return Math.Sign(offsetDotProduct) == -1;
     }
 
     private void PublishOnCollisionEnter2D(Collision2D other)
