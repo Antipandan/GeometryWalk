@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-public class ChangeShipMovementPortal : ChangePlayerMovementPortal<ShipPlayerMovement>
+public class ChangeShipMovementPortal : ChangePlayerMovementPortal<PlayerMovementShipSO>
 {
     
 }

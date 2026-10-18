@@ -7,12 +7,12 @@ using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public abstract class PlayerMovement : MonoBehaviour
+public abstract class PlayerMovement<TPlayerMovementSo> : MonoBehaviour where TPlayerMovementSo : PlayerMovementSO
 {
+    [SerializeField] protected TPlayerMovementSo playerMovementData;
     [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] protected Player player;
-    [SerializeField] protected float movementSpeed = GameConstants.defaultMovementSpeed;
-    [SerializeField] protected float UpwardsForce = GameConstants.defaultUpwardsForce;
+    protected float movementSpeed = 0f;
+    protected float UpwardsForce = 0f;
     protected InputAction jumpAction;
     protected virtual float MovementSpeed
     {
@@ -28,6 +28,7 @@ public abstract class PlayerMovement : MonoBehaviour
     {
         GetInputs();
         SubscribeEvents();
+        SetupValues();
     }
 
     protected virtual void Update()
@@ -40,6 +41,18 @@ public abstract class PlayerMovement : MonoBehaviour
     protected virtual void OnDisable()
     {
         UnSubscribeEvents();
+    }
+
+    protected virtual void SetupValues()
+    {
+        if (playerMovementData == null) return;
+        movementSpeed = playerMovementData.MovementSpeed;
+        UpwardsForce = playerMovementData.UpwardsForce;
+    }
+
+    public virtual Type GetMovementDataType()
+    {
+        return playerMovementData.GetType();
     }
 
     protected virtual void SubscribeEvents()
@@ -67,8 +80,8 @@ public abstract class PlayerMovement : MonoBehaviour
     }
     protected virtual void CheckReferences()
     {
+        ReferenceValidator.CheckObjectForNull(ref playerMovementData, gameObject, nameof(playerMovementData));
         ReferenceValidator.CheckComponentForNull(ref rb, gameObject, nameof(rb));
-        ReferenceValidator.CheckComponentForNullChild(ref player, gameObject, nameof(player));
     }
 
     protected virtual void MoveForward()
@@ -89,4 +102,14 @@ public abstract class PlayerMovement : MonoBehaviour
             rb.linearVelocity += new Vector2(0, UpwardsForce) * Time.deltaTime;
         }
     }
+
+    public virtual void SetDefaultValues()
+    {
+        this.movementSpeed = GameConstants.defaultMovementSpeed;
+        this.UpwardsForce = GameConstants.defaultUpwardsForce;
+        this.jumpAction = InputSystem.actions.FindAction("Jump");
+        this.rb = gameObject.GetComponent<Rigidbody2D>();
+        if (this.rb == null) Logging.LogRegularStringMessage("rb not found", ErrorSeverity.Warning, gameObject);
+    }
+    
 }

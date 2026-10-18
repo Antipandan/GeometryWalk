@@ -1,14 +1,26 @@
 ﻿using System;
 using UnityEngine;
 
-public sealed class FootPlayerMovement : PlayerMovement
+public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO> 
 {
     [SerializeField] private LayerMask validGroundLayers;
-    [SerializeField] private float rotationSpeed = GameConstants.defaultRotationSpeed;
+    private float rotationSpeed = 0f;
     private bool isGrounded = false;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        validGroundLayers = GetDefaultLayers();
+    }
+
+    private static int GetDefaultLayers()
+    {
+        return (1 << LayerMask.NameToLayer("Ground"));
+    }
 
     protected override void Update()
     {
+        if (this == null) return;
         MoveForward();
         if (jumpAction.IsPressed() && isGrounded) Jump();
         if (!isGrounded) RotatePlayerMidAir();
@@ -31,6 +43,15 @@ public sealed class FootPlayerMovement : PlayerMovement
         rotation.eulerAngles = new Vector3(0, 0, newRotation);
         gameObject.transform.rotation = rotation;
     }
+    
+    protected override void SetupValues()
+    {
+        base.SetupValues();
+        if (playerMovementData != null)
+        {
+            rotationSpeed = playerMovementData.RotationSpeed;
+        }
+    }
 
     protected override void SubscribeEvents()
     {
@@ -51,4 +72,5 @@ public sealed class FootPlayerMovement : PlayerMovement
         }
         isGrounded = false;
     }
+    
 }

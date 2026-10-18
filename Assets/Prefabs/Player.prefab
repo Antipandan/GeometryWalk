@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4444445200854113741}
   - component: {fileID: 5316594236908209710}
   - component: {fileID: 5242079563106266025}
+  - component: {fileID: 3144718312077859084}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -119,7 +120,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!61 &4444445200854113741
@@ -182,9 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   damageMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   explosionEffect: {fileID: 8130748834579384420, guid: 88a7958e455c9f141bd3ce213dd6c17a, type: 3}
   deathSound: {fileID: 8300000, guid: 64a302bd98146684883699c30059c2d2, type: 3}
+  playerMovement: {fileID: 0}
 --- !u!114 &5242079563106266025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +199,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb2b5fc888e40f295332228e5c0f6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FootPlayerMovement
+  playerMovementData: {fileID: 0}
   rb: {fileID: 6032531048810139111}
-  player: {fileID: 5316594236908209710}
-  movementSpeed: 1
-  jumpSpeed: 100
+  validGroundLayers:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &3144718312077859084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310594811314049290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b232441d78c409b9637362ae58146c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderHandler
+  onCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  playerCollider: {fileID: 4444445200854113741}
+  damageMask:
+    serializedVersion: 2
+    m_Bits: 8

@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask damageMask;
     [SerializeField] private EffectsImplementation explosionEffect;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private PlayerMovement<PlayerMovementSO> playerMovement;
     private EventBinding<PlayerDeathEvent> deathEvent;
+    
     private void Awake()
     {
         CheckReferences();
@@ -18,6 +20,8 @@ public class Player : MonoBehaviour
     {
         deathEvent = new EventBinding<PlayerDeathEvent>(KillPlayer);
         EventBus<PlayerDeathEvent>.Register(deathEvent);
+        var playerMovement = GetComponent<FootPlayerMovement>();
+        
     }
 
     private void OnDestroy()
@@ -50,5 +54,17 @@ public class Player : MonoBehaviour
     private void PlayDeathSound()
     {
         if (deathSound != null) SoundPlayer.CreateInstance().PlaySound(deathSound);
+    }
+
+    public void UpdatePlayerMovementScheme<TMovementSO>() where TMovementSO : PlayerMovementSO
+    {
+        
+    }
+
+    // Talk is cheap. Show me the code.
+    public void UpdatePlayerMovementScheme<TMovementSO>(PlayerMovement<TMovementSO> movementScript)
+        where TMovementSO : PlayerMovementSO
+    {
+        
     }
 }
