@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
     {
         TMovementType newMovement = gameObject.AddComponent<TMovementType>();
         newMovement.PlayerMovementData = movementData;
+        newMovement.gameObject.SetActive(false);
+        newMovement.gameObject.SetActive(true);
         Destroy(playerMovement);
         playerMovement = newMovement;
     }

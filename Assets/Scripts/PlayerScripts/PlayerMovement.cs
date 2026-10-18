@@ -11,6 +11,7 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
 {
     [SerializeField] protected TPlayerMovementSo playerMovementData;
     [SerializeField] protected Rigidbody2D rb;
+    // temporary values to see if things work!
     protected float movementSpeed = 5f;
     protected float UpwardsForce = 110f;
     protected InputAction jumpAction;
@@ -34,6 +35,11 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
     {
         GetInputs();
         SubscribeEvents();
+        SetupValues();
+    }
+
+    protected void OnValidate()
+    {
         SetupValues();
     }
 
@@ -104,7 +110,6 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
         }
     }
     
-
     public virtual void SetDefaultValues()
     {
         this.movementSpeed = GameConstants.defaultMovementSpeed;
