@@ -5,10 +5,17 @@ using CustomUtility;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 
-public abstract class ChangePlayerMovementPortal<TMovementTypeSO> : MonoBehaviour where TMovementTypeSO : PlayerMovementSO
+public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO> : MonoBehaviour
+    where TMovementType : PlayerMovement<TMovementTypeSO> where TMovementTypeSO : PlayerMovementSO
 {
     // just making sure this exists
-    [SerializeField] private Collider2D entrenceZone;
+    [SerializeField] protected Collider2D entrenceZone;
+    [SerializeField] protected TMovementTypeSO playerMovement;
+    
+    protected Collider2D entrenceZoneCollider
+    {
+        get => entrenceZone;
+    }
 
     protected virtual void Awake()
     {
@@ -24,11 +31,10 @@ public abstract class ChangePlayerMovementPortal<TMovementTypeSO> : MonoBehaviou
     {
         if (IsValidTarget(collision, out var player))
         {
-            PlayerMovement<TMovementTypeSO> movementComponent = CreatePlayerMovement();
-            player?.UpdatePlayerMovementScheme(movementComponent);
+            AddNewMovementComponentToPlayer(player);
         }
     }
-
+    
     protected virtual void SetupValues()
     {
         SetupEntrence();
@@ -38,10 +44,10 @@ public abstract class ChangePlayerMovementPortal<TMovementTypeSO> : MonoBehaviou
     {
         if (entrenceZone != null) entrenceZone.isTrigger = true;
     }
-    
-    protected PlayerMovement<TMovementTypeSO> CreatePlayerMovement()
+
+    protected virtual void AddNewMovementComponentToPlayer(Player player)
     {
-        return new Component().AddComponent<PlayerMovement<TMovementTypeSO>>();
+        player.UpdatePlayerMovementScheme<TMovementType, TMovementTypeSO>(playerMovement);
     }
     
     protected virtual void CheckReferences()

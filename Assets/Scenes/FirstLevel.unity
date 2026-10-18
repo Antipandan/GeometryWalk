@@ -1261,6 +1261,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1704620325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5242079563106266025, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+  m_PrefabInstance: {fileID: 2973362111098771329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb2b5fc888e40f295332228e5c0f6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootPlayerMovement
 --- !u!1001 &1968874978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1333,7 +1344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2801984628912610465, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.97
+      value: 14.98
       objectReference: {fileID: 0}
     - target: {fileID: 4084101393711686009, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
       propertyPath: m_Name
@@ -1379,6 +1390,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4733897340212649970, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 11400000, guid: 7544561aaa1420d4ba2510695f838fd0, type: 2}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 11400000, guid: 35cb07abeb764584a83d8e86412a77b5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1453,6 +1472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 310594811314049290, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5242079563106266025, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: playerMovementData
       value: 
@@ -1460,6 +1483,14 @@ PrefabInstance:
     - target: {fileID: 5242079563106266025, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: validGroundLayers.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316594236908209710, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1704620325}
+    - target: {fileID: 6032531048810139111, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6920468588790393820, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: m_LocalPosition.x

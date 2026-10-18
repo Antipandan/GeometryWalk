@@ -7,16 +7,22 @@ using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public abstract class PlayerMovement<TPlayerMovementSo> : MonoBehaviour where TPlayerMovementSo : PlayerMovementSO
+public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPlayerMovementSo : PlayerMovementSO
 {
     [SerializeField] protected TPlayerMovementSo playerMovementData;
     [SerializeField] protected Rigidbody2D rb;
-    protected float movementSpeed = 0f;
-    protected float UpwardsForce = 0f;
+    protected float movementSpeed = 5f;
+    protected float UpwardsForce = 110f;
     protected InputAction jumpAction;
-    protected virtual float MovementSpeed
+    public virtual float MovementSpeed
     {
         get => movementSpeed;
+    }
+
+    public TPlayerMovementSo PlayerMovementData
+    {
+        get => playerMovementData;
+        set => playerMovementData = value;
     }
 
     protected virtual void Awake()
@@ -48,11 +54,6 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MonoBehaviour where TP
         if (playerMovementData == null) return;
         movementSpeed = playerMovementData.MovementSpeed;
         UpwardsForce = playerMovementData.UpwardsForce;
-    }
-
-    public virtual Type GetMovementDataType()
-    {
-        return playerMovementData.GetType();
     }
 
     protected virtual void SubscribeEvents()
@@ -102,6 +103,7 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MonoBehaviour where TP
             rb.linearVelocity += new Vector2(0, UpwardsForce) * Time.deltaTime;
         }
     }
+    
 
     public virtual void SetDefaultValues()
     {

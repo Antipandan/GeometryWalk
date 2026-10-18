@@ -8,7 +8,6 @@ namespace DefaultNamespace
         [SerializeField] private Animator animator;
         private void OnBecameInvisible()
         {
-            Debug.Log($"invis");
             gameObject.SetActive(false);
         }
 
