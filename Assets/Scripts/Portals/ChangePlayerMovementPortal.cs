@@ -12,7 +12,7 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
     [SerializeField] protected Collider2D entrenceZone;
     [SerializeField] protected TMovementTypeSO playerMovement;
     // hotfix for when we are swapping components in the portal >:(
-    protected bool hasBeenTriggered = false;
+    private bool hasBeenTriggered = false;
     
     protected Collider2D entrenceZoneCollider
     {
@@ -31,7 +31,6 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"trigger enter");
         if (!hasBeenTriggered && IsValidTarget(collision, out var player))
         {
             hasBeenTriggered = true;

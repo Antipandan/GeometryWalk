@@ -23,7 +23,12 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
     public TPlayerMovementSo PlayerMovementData
     {
         get => playerMovementData;
-        set => playerMovementData = value;
+        set
+        {
+            playerMovementData = value;
+            SetupValues();
+        }
+        
     }
 
     protected virtual void Awake()
@@ -87,7 +92,7 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
     }
     protected virtual void CheckReferences()
     {
-        ReferenceValidator.CheckObjectForNull(ref playerMovementData, gameObject, nameof(playerMovementData));
+        ReferenceValidator.CheckObjectForNull(ref playerMovementData, gameObject, nameof(playerMovementData), ErrorSeverity.Warning);
         ReferenceValidator.CheckComponentForNull(ref rb, gameObject, nameof(rb));
     }
 

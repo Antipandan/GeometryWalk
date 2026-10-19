@@ -20,8 +20,16 @@ public class Player : MonoBehaviour
     {
         deathEvent = new EventBinding<PlayerDeathEvent>(KillPlayer);
         EventBus<PlayerDeathEvent>.Register(deathEvent);
-        var playerMovement = GetComponent<FootPlayerMovement>();
-        
+        MovementBase newPlayerMovement = GetComponent<FootPlayerMovement>();
+        playerMovement = newPlayerMovement;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (damageMask.HasLayer(other.gameObject.layer))
+        {
+            EventBus<PlayerDeathEvent>.Raise();
+        }
     }
 
     private void OnDestroy()
@@ -61,8 +69,6 @@ public class Player : MonoBehaviour
     {
         TMovementType newMovement = gameObject.AddComponent<TMovementType>();
         newMovement.PlayerMovementData = movementData;
-        newMovement.gameObject.SetActive(false);
-        newMovement.gameObject.SetActive(true);
         Destroy(playerMovement);
         playerMovement = newMovement;
     }

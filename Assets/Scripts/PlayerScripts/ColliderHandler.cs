@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class ColliderHandler : MonoBehaviour
 {
+    [SerializeField] protected GameObject attachedObject;
     [SerializeField] protected UnityEvent onCollision;
     [SerializeField] protected Collider2D playerCollider;
     [SerializeField] protected LayerMask damageMask;
@@ -36,7 +37,7 @@ public class ColliderHandler : MonoBehaviour
     {
         Transform other = collision.gameObject.transform;
         if (other == null) return false;
-        Vector2 dir = gameObject.transform.position - other.position;
+        Vector2 dir = attachedObject.transform.position - other.position;
         float dotProduct = Vector2.Dot(Vector2.up, dir);
         float playerColliderSizeX = playerCollider.bounds.extents.x;
         float offsetDotProduct = dotProduct - playerColliderSizeX / 2f;
@@ -52,6 +53,7 @@ public class ColliderHandler : MonoBehaviour
     protected virtual void CheckReferences()
     {
         ReferenceValidator.CheckComponentForNull(ref playerCollider, gameObject, nameof(playerCollider));
+        if (attachedObject == null) attachedObject = gameObject;
     }
 
     protected virtual void SubscribeEvents()
