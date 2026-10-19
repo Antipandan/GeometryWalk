@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask damageMask;
     [SerializeField] private EffectsImplementation explosionEffect;
     [SerializeField] private AudioClip deathSound;
+    // PlayerMovement<PlayerMovementSO> gamla PlayerMovement<PlayerMovementFootSO> passar ej?
     [SerializeField] private MovementBase playerMovement; // problem
     private EventBinding<PlayerDeathEvent> deathEvent;
     

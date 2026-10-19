@@ -1161,38 +1161,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6920468588790393820, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
   m_PrefabInstance: {fileID: 2973362111098771329}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1302360586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6392316470178438419, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
-  m_PrefabInstance: {fileID: 2421741103623018898}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1302360591
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302360586}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1599453039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,13 +1437,42 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 11400000, guid: 35cb07abeb764584a83d8e86412a77b5, type: 2}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 590f7b7327ad4a14e9dbca0b8b58ea6d, type: 2}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CustomUtility.SceneUtilities, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 901950376}
+    - target: {fileID: 4748938285307041454, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6392316470178438419, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1302360591}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c927b88aaadccd847a2b726e47c6c596, type: 3}
 --- !u!1001 &2618987130831118249
 PrefabInstance:
@@ -1545,6 +1542,38 @@ PrefabInstance:
     - target: {fileID: 310594811314049290, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 590f7b7327ad4a14e9dbca0b8b58ea6d, type: 2}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResetRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CustomUtility.SceneUtilities, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 901950376}
+    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4444445200854113741, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: m_Material

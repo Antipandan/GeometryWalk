@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CustomUtility;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 
 public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO> : MonoBehaviour
     where TMovementType : PlayerMovement<TMovementTypeSO> where TMovementTypeSO : PlayerMovementSO
@@ -11,6 +12,9 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
     // just making sure this exists
     [SerializeField] protected Collider2D entrenceZone;
     [SerializeField] protected TMovementTypeSO playerMovement;
+    [SerializeField] [Tooltip("Add extra functionality if you want." +
+                              " If anyone puts a game destroying function(s) here I'll mangle your spongebob ice cream")]
+    protected UnityEvent onPlayerEnter;
     // hotfix for when we are swapping components in the portal >:(
     private bool hasBeenTriggered = false;
     
@@ -33,6 +37,7 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
     {
         if (!hasBeenTriggered && IsValidTarget(collision, out var player))
         {
+            onPlayerEnter?.Invoke();
             hasBeenTriggered = true;
             AddNewMovementComponentToPlayer(player);
         }
