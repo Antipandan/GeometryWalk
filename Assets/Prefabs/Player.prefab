@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4444445200854113741}
   - component: {fileID: 5316594236908209710}
   - component: {fileID: 5242079563106266025}
+  - component: {fileID: 6382548503768176688}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -133,7 +134,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9431d7121a3c0164985bf0f297e0c54c, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,7 +155,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
@@ -201,9 +202,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FootPlayerMovement
   playerMovementData: {fileID: 11400000, guid: 7544561aaa1420d4ba2510695f838fd0, type: 2}
   rb: {fileID: 6032531048810139111}
+  angleLerper: {fileID: 6382548503768176688}
   validGroundLayers:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &6382548503768176688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310594811314049290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b94f195d1b43c1a970f34f7dfa6b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AngleLerper
+  lerpingTime: 15
 --- !u!1 &4578888871754599466
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,20 @@
 ﻿using System;
+using System.Collections;
+using CustomUtility;
 using UnityEngine;
 
 public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO> 
 {
+    [SerializeField] private AngleLerper angleLerper;
     [SerializeField] private LayerMask validGroundLayers;
     private float rotationSpeed = 0f;
     private bool isGrounded = false;
+
+    protected override void CheckReferences()
+    {
+        base.CheckReferences();
+        ReferenceValidator.CheckComponentForNull(ref angleLerper, gameObject, nameof(angleLerper));
+    }
 
     protected override void OnEnable()
     {
@@ -30,20 +39,23 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
     {
         if (!isGrounded && validGroundLayers.HasLayer(collision2D.gameObject.layer))
         {
-            isGrounded = true;
-            ClampRotation();
+            if (this != null)
+            {
+                isGrounded = true;
+                if (angleLerper != null) StartCoroutine(angleLerper.LerpClampRotation(gameObject));
+                else ClampRotation();
+            }
+
         }
     }
 
     private void ClampRotation()
     {
-        if (this == null) return;
         // ReSharper disable once PossibleLossOfFraction
         float newRotation = ((int)gameObject.transform.rotation.eulerAngles.z / 90) * 90f;
         Quaternion rotation = gameObject.transform.rotation;
         rotation.eulerAngles = new Vector3(0, 0, newRotation);
         gameObject.transform.rotation = rotation;
-
     }
     
     protected override void SetupValues()

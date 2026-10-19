@@ -1543,45 +1543,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 590f7b7327ad4a14e9dbca0b8b58ea6d, type: 2}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetRotation
-      objectReference: {fileID: 0}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CustomUtility.SceneUtilities, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 901950376}
-    - target: {fileID: 2065012424658044366, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: onCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444445200854113741, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444445200854113741, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
-      propertyPath: m_UsedByEffector
-      value: 1
+    - target: {fileID: 6382548503768176688, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
+      propertyPath: lerpingTime
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6920468588790393820, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
       propertyPath: m_LocalPosition.x
