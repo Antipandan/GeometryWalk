@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Editor
@@ -12,15 +13,29 @@ namespace Editor
         [MenuItem("GameObject/UI (Canvas)/Button - Image", false, 10)]
         public static void CreateImageButton(MenuCommand command)
         {
-            GameObject buttonImage = ButtonImage.CreateInstance();
+            CreateCustomUIElements<ButtonImage>(command);
+        }
+
+        [MenuItem("GameObject/UI (Canvas)/Button - ImageTextPair", false, 10)]
+
+        public static void CreateImageButtonTextPair(MenuCommand command)
+        {
+            CreateCustomUIElements<ButtonImageTextPairFactory>(command);
+        }
+
+        private static void CreateCustomUIElements<TCustomUiElement>(MenuCommand command)
+            where TCustomUiElement : CustomUICreator, new()
+        {
+            TCustomUiElement builder = new TCustomUiElement();
+            GameObject customGameObject = builder.CreateInstance();
             // dont know
             GameObject parent = (GameObject)command.context;
             // parent if needed
-            GameObjectUtility.SetParentAndAlign(buttonImage.gameObject, parent);
+            GameObjectUtility.SetParentAndAlign(customGameObject.gameObject, parent);
             // undo work
-            Undo.RegisterCreatedObjectUndo(buttonImage.gameObject, "Create " + buttonImage.name);
+            Undo.RegisterCreatedObjectUndo(customGameObject.gameObject, "Create " + customGameObject.name);
             // selected object
-            Selection.activeObject = buttonImage;
+            Selection.activeObject = customGameObject;
         }
     }
 }

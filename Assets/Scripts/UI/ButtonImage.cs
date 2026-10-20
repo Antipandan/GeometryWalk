@@ -4,11 +4,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public static class ButtonImage
+public class ButtonImage : CustomUICreator
 {
-    #region StaticMethods
     
-    public static GameObject CreateInstance()
+    #region PublicMethods
+
+    public override GameObject CreateInstance()
     {
         GameObject image = new GameObject("ButtonImage");
         AddNecessaryComponents(image);
@@ -19,21 +20,18 @@ public static class ButtonImage
         return image;
     }
 
+    #endregion
+    #region StaticMethods
+
     private static void AddNecessaryComponents(GameObject button)
     {
-        button.AddComponent<RectTransform>();
-        button.AddComponent<CanvasRenderer>();
-        button.AddComponent<Button>();
-        Image image = button.gameObject.AddComponent<Image>();
+        Image image = CustomUIBuilder.AddNecessaryUIButtonComponents(button).AddComponent<Image>();
         configure(image);
         return;
 
         static void configure(Image image)
         {
-            Sprite loadedSprite = AssetDatabase.LoadAssetAtPath<Sprite>
-                (GameConstants.defaultBackGroundPath);
-            if (loadedSprite == null) Logging.LogNullReferenceError("sprite", ErrorSeverity.Warning, image.gameObject, () => {
-                Debug.Log("This asset could not be found", image.gameObject);});
+            Sprite loadedSprite = CustomUIBuilder.LoadDefaultUIBackgroundSprite();
             image.sprite ??= loadedSprite;
             image.color = Color.white;
         }
