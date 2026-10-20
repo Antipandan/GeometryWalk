@@ -51,5 +51,4 @@ public class EffectsImplementation : MonoBehaviour, IDelayedDestruction
         Destroy(gameObject);
     }
 
-
 }
