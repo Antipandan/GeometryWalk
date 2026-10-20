@@ -41,7 +41,7 @@ public class ButtonImageTextPairFactory : CustomUICreator
     {
         CustomUIBuilder.AddNecessaryUIComponents(text);
         TextMeshProUGUI meshPro = text.AddComponent<TextMeshProUGUI>();
-        meshPro.text = "text";
+        meshPro.text = "Text";
         meshPro.alignment = TextAlignmentOptions.Center;
     }
     

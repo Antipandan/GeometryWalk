@@ -3,27 +3,11 @@ using CustomUtility;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseButton : MonoBehaviour
+
+public class PauseButton : ButtonBase
 {
-    [SerializeField] private Button restartButton;
     [SerializeField] private Image icon;
     [SerializeField] private PauseButtonImages images;
-
-    private void Awake()
-    {
-        CheckReferences();
-    }
-
-    private void OnEnable()
-    {
-        SubscribeEvents();
-    }
-
-    private void OnDisable()
-    {
-        UnSubscribeEvents();
-    }
-
     private void Pause()
     {
         GameUtilities.SwitchPausePlay();
@@ -33,22 +17,25 @@ public class PauseButton : MonoBehaviour
         }
     }
 
-    private void SubscribeEvents()
+    protected override void SubscribeEvents()
     {
-        if (restartButton == null) return;
-        restartButton.onClick.RemoveListener(Pause);
-        restartButton.onClick.AddListener(Pause);
+        if (button == null) return;
+        button.onClick.RemoveListener(Pause);
+        button.onClick.AddListener(Pause);
+        button.onClick.RemoveListener(EventBus<GamePausedEvent>.Raise);
+        button.onClick.AddListener(EventBus<GamePausedEvent>.Raise);
     }
 
-    private void UnSubscribeEvents()
+    protected override void UnsubscribeEvents()
     {
-        if (restartButton == null) return;
-        restartButton.onClick.RemoveListener(Pause);
+        if (button == null) return;
+        button.onClick.RemoveListener(Pause);
+        button.onClick.RemoveListener(EventBus<GamePausedEvent>.Raise);
     }
 
-    private void CheckReferences()
+    protected override void CheckReferences()
     {
-        ReferenceValidator.CheckComponentForNull(ref restartButton, gameObject, nameof(restartButton));
+        ReferenceValidator.CheckComponentForNull(ref button, gameObject, "Restart button");
         ReferenceValidator.CheckUnityObjectForNull(ref images, nameof(images));
     }
 }

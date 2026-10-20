@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public static class EventBus<T>
 {
     private static readonly HashSet<IEventBindings<T>> bindings = new HashSet<IEventBindings<T>>();
-    private static bool stopIteration = false;
     public static void Register(IEventBindings<T> binding)
     {
         bindings.Add(binding);
@@ -20,7 +19,6 @@ public static class EventBus<T>
         // simpler
         foreach (IEventBindings<T> binding in bindings)
         {
-            if (stopIteration) break;
             if (binding.BindingType != typeof(T)) continue;
             binding.PublishOnEvent(parameter);
             if (raiseAll) binding.PublishOnEventNoArgs();
@@ -31,7 +29,6 @@ public static class EventBus<T>
     {
         foreach (IEventBindings<T> binding in bindings)
         {
-            if (stopIteration) break;
             binding.PublishOnEventNoArgs();
         }
     }

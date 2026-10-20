@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
-public class CustomUICreator
+public class CustomUICreator : ICustomUICreator
 {
+    // ReSharper disable once MemberCanBeProtected.Global
     public CustomUICreator()
     {
         
