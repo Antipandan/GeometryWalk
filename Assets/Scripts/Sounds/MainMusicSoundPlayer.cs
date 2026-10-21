@@ -7,20 +7,34 @@ using UnityEngine;
 public sealed class MainMusicSoundPlayer : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private MusicSettings mainMusicSettings;
     private static MainMusicSoundPlayer instance;
     [CanBeNull]
     public static MainMusicSoundPlayer Instance
     {
-        get => instance;
+        get
+        {
+            if (instance != null) return instance;
+            MainMusicSoundPlayer newInstance = CreateInstance();
+            instance = newInstance;
+            return newInstance;
+        }
     }
 
+    public float Volume
+    {
+        get => audioSource.volume;
+    }
+    
     public AudioClip MusicAudioClip
     {
-        
         get => audioSource.clip;
         set
         {
-            if (audioSource == null) return;
+            if (audioSource == null)
+            {
+                return;
+            }
             audioSource.clip = value;   
         }
     }
@@ -29,21 +43,16 @@ public sealed class MainMusicSoundPlayer : MonoBehaviour
     {
         CheckReferences();
         CheckSingleton();
+        if (mainMusicSettings != null) ChangeVolume(mainMusicSettings.Volume);
     }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
+    
 
     private void CheckSingleton()
     {
-        if (instance == null) instance = this;
+        if (instance == null || instance == this)
+        {
+            instance = this;
+        }
         else
         {
             Logging.LogSingletonError(nameof(MainMusicSoundPlayer), ErrorSeverity.Error);
@@ -51,9 +60,15 @@ public sealed class MainMusicSoundPlayer : MonoBehaviour
         }
     }
 
+    public static MainMusicSoundPlayer CreateInstance()
+    {
+        return instance == null ? null : new GameObject("MainSoundPlayer").AddComponent<MainMusicSoundPlayer>();
+    }
+
     private void CheckReferences()
     {
         ReferenceValidator.CheckComponentForNull(ref audioSource, gameObject, nameof(audioSource));
+        ReferenceValidator.CheckUnityObjectForNull(ref mainMusicSettings, nameof(mainMusicSettings));
     }
 
     private void SetupAudioSource()
@@ -69,9 +84,14 @@ public sealed class MainMusicSoundPlayer : MonoBehaviour
         return GameUtilities.ClampVolume(volume);
     }
 
+    public void ChangeVolume(float volume = 1f)
+    {
+        audioSource.volume = ClampVolume(volume);
+    }
+
     public AudioSource SetVolume(float volume = 1f)
     {
-        audioSource.volume = volume;
+        ChangeVolume(volume);
         return audioSource;
     }
     

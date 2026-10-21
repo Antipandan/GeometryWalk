@@ -1,4 +1,4 @@
-﻿public class GameResumedEvent : IEvent
+﻿public class GameResumedEvent
 {
     
 }

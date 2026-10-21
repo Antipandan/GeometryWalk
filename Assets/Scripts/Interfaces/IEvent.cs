@@ -1,6 +1,0 @@
-﻿
-// wrapper
-public interface IEvent
-{
-    
-}

@@ -1,4 +1,4 @@
-﻿public struct GamePausedEvent : IEvent
+﻿public struct GamePausedEvent
 {
 
 }

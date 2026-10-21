@@ -1,4 +1,4 @@
-﻿public struct PlayerDeathEvent : IEvent
+﻿public struct PlayerDeathEvent
 {
     
 }

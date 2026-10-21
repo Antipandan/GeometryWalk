@@ -15,7 +15,6 @@ public sealed class ImageSliderTextFactory : CustomUICreator
         TextMeshProUGUI textMesh = SetupText(text);
         PositionText(textMesh);
         textMesh.transform.SetParent(slider.transform);
-        
         return slider;
     }
 
@@ -104,6 +103,7 @@ public sealed class ImageSliderTextFactory : CustomUICreator
         background.raycastTarget = true;
         background.maskable = true;
         background.sprite = backgroundSprite;
+        background.type = Image.Type.Sliced;
         return background;
     }
 
