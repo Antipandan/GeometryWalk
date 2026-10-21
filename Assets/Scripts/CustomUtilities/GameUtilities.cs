@@ -49,4 +49,14 @@ public static class GameUtilities
     {
         Time.timeScale = time;
     }
+
+    public static float ClampVolume(float volume)
+    {
+        return Mathf.Clamp(volume, 0f, 1f);
+    }
+
+    public static float ClampPitch(float pitch)
+    {
+        return Mathf.Clamp(pitch, -3f, 3f);
+    }
 }

@@ -43,5 +43,13 @@ public static class CustomUIBuilder
         if (LogResults && icon == null)  Logging.LogNullReferenceError("Default UI Icon Sprite", ErrorSeverity.Error);
         return icon;
     }
+
+    public static Sprite LoadDefaultSliderBackground(bool LogResults = true)
+    {
+        Sprite background = AssetDatabase.LoadAssetAtPath<Sprite>(
+            GameConstants.defaultSliderBackground);
+        if (LogResults && background == null) Logging.LogNullReferenceError("Default UI Icon Sprite", ErrorSeverity.Error);
+        return background;
+    }
     
 }

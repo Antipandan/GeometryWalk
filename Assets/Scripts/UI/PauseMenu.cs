@@ -7,15 +7,22 @@ using CustomUtility;
 public sealed class PauseMenu : MonoBehaviour
 {
     // Just making sure these exist!
+    [SerializeField] [Tooltip("GameObject that holds everything")]
+    private GameObject holder;
     [SerializeField] [Tooltip("Background that should exist on the gameObject")] private Image background;
     [SerializeField] [Tooltip("Pause text that should exist on the gameObject")] private TextMeshProUGUI text;
     [SerializeField] [Tooltip("Restart button that should exist on the gameObject")] private ButtonBase restartButton;
     [SerializeField] [Tooltip("Resume button that should exist on the gameObject")] private ButtonBase resumeButton;
     [SerializeField] [Tooltip("Exit main menu button that should exist on the gameObject")] private ButtonBase exitMainMenuButton;
-
+    private EventBinding<GamePausedEvent> gamePausedEvent;
+    private EventBinding<GameResumedEvent> gameResumedEvent;
     private void Awake()
     {
+        gamePausedEvent = new EventBinding<GamePausedEvent>(Pause);
+        gameResumedEvent = new EventBinding<GameResumedEvent>(Resume);
         CheckReferences();
+        SubscribeEvents();
+        holder.SetActive(false);
     }
 
     private void OnEnable()
@@ -30,28 +37,29 @@ public sealed class PauseMenu : MonoBehaviour
 
     private void SubscribeEvents()
     {
-        EventBus<GamePausedEvent>.Register(new EventBinding<GamePausedEvent>(Pause));
-        EventBus<GameResumedEvent>.Register(new EventBinding<GameResumedEvent>(Resume));
+        EventBus<GamePausedEvent>.Register(gamePausedEvent);
+        EventBus<GameResumedEvent>.Register(gameResumedEvent);
     }
 
     private void UnsubscribeEvents()
     {
-        EventBus<GamePausedEvent>.DeRegister(new EventBinding<GamePausedEvent>(Pause));
-        EventBus<GameResumedEvent>.DeRegister(new EventBinding<GameResumedEvent>(Resume));
+        EventBus<GamePausedEvent>.DeRegister(gamePausedEvent);
+        EventBus<GameResumedEvent>.DeRegister(gameResumedEvent);
     }
 
     private void Pause()
     {
-        gameObject.SetActive(true);
+        holder.SetActive(true);
     }
 
     private void Resume()
     {
-        gameObject.SetActive(false);
+        holder.SetActive(false);
     }
 
     private void CheckReferences()
     {
+        if (holder == null) ReferenceValidator.CheckUnityObjectForNull(ref holder, ErrorSeverity.FatalError, preventPlay: true);
         ReferenceValidator.CheckComponentForNull(ref background, gameObject, nameof(background));
         ReferenceValidator.CheckComponentForNull(ref text, gameObject, nameof(text));
         ReferenceValidator.CheckComponentForNull(ref restartButton, gameObject, nameof(restartButton));

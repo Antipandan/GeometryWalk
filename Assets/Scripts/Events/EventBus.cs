@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class EventBus<T>
 {
@@ -29,6 +30,7 @@ public static class EventBus<T>
     {
         foreach (IEventBindings<T> binding in bindings)
         {
+            if (binding.BindingType != typeof(T)) continue;
             binding.PublishOnEventNoArgs();
         }
     }

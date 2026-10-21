@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6929446176169306005}
   - component: {fileID: 7213710877474327628}
+  - component: {fileID: 4100082971107608153}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -43,7 +44,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 9c5c71b79ff452640b417089f0bc0611, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3d56c4d53704e4145970bd0454ab9478, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -129,3 +130,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4100082971107608153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7046767456139125084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a4b2a785040bb8a9e9871e7902293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMusicSoundPlayer
+  audioSource: {fileID: 7213710877474327628}

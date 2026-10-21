@@ -4,17 +4,45 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PauseButton : ButtonBase
+public sealed class PauseButton : ButtonBase
 {
     [SerializeField] private Image icon;
     [SerializeField] private PauseButtonImages images;
+    private EventBinding<GamePausedEvent> gamePausedEventBinding;
+    private EventBinding<GameResumedEvent> gameResumedEventBinding;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        gamePausedEventBinding = new EventBinding<GamePausedEvent>(AssignAppropriateSprite);
+        gameResumedEventBinding = new EventBinding<GameResumedEvent>(AssignAppropriateSprite);
+    }
+
+    private void OnDestroy()
+    {
+        EventBus<GamePausedEvent>.DeRegister(gamePausedEventBinding);
+        EventBus<GameResumedEvent>.DeRegister(gameResumedEventBinding);
+    }
+
     private void Pause()
     {
         GameUtilities.SwitchPausePlay();
         if (images != null && icon != null)
         {
-            icon.sprite = images.GetAppropriateImage(Time.timeScale);
+            AssignAppropriateSprite();
+            if (Time.timeScale == 0f) EventBus<GamePausedEvent>.Raise();
+            else EventBus<GameResumedEvent>.Raise();
         }
+    }
+
+    private void AssignAppropriateSprite()
+    {
+        icon.sprite = GetAppropriateSprite();
+    }
+    
+    private Sprite GetAppropriateSprite()
+    {
+        return images.GetAppropriateImage(Time.timeScale);
     }
 
     protected override void SubscribeEvents()
@@ -22,15 +50,14 @@ public class PauseButton : ButtonBase
         if (button == null) return;
         button.onClick.RemoveListener(Pause);
         button.onClick.AddListener(Pause);
-        button.onClick.RemoveListener(EventBus<GamePausedEvent>.Raise);
-        button.onClick.AddListener(EventBus<GamePausedEvent>.Raise);
+        EventBus<GamePausedEvent>.Register(gamePausedEventBinding);
+        EventBus<GameResumedEvent>.Register(gameResumedEventBinding);
     }
 
     protected override void UnsubscribeEvents()
     {
         if (button == null) return;
         button.onClick.RemoveListener(Pause);
-        button.onClick.RemoveListener(EventBus<GamePausedEvent>.Raise);
     }
 
     protected override void CheckReferences()

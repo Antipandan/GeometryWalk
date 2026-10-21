@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7724280802846052342}
   - component: {fileID: 6235989156727287759}
   - component: {fileID: 6332355286990045984}
+  - component: {fileID: 8071648960240791598}
   m_Layer: 5
   m_Name: PauseMenuCanvas
   m_TagString: Untagged
@@ -102,6 +103,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8071648960240791598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577056759822450193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc5e4b2aabb4a2aa78384781440d18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  holder: {fileID: 4282996655058726391}
+  background: {fileID: 9043501630794206209}
+  text: {fileID: 3144958884094177723}
+  restartButton: {fileID: 7911845636916704677}
+  resumeButton: {fileID: 4948303442329565978}
+  exitMainMenuButton: {fileID: 2220296426809982464}
 --- !u!1001 &1858286271544231203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,6 +132,10 @@ PrefabInstance:
     - target: {fileID: 2502232584702339284, guid: 1a3e421d764d58547abdf972543be653, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502232584702339284, guid: 1a3e421d764d58547abdf972543be653, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2565128444852926357, guid: 1a3e421d764d58547abdf972543be653, type: 3}
       propertyPath: exitMainMenuButton
@@ -219,3 +242,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3657820819602915324, guid: 1a3e421d764d58547abdf972543be653, type: 3}
   m_PrefabInstance: {fileID: 1858286271544231203}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3144958884094177723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3633515349515007128, guid: 1a3e421d764d58547abdf972543be653, type: 3}
+  m_PrefabInstance: {fileID: 1858286271544231203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &4282996655058726391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2502232584702339284, guid: 1a3e421d764d58547abdf972543be653, type: 3}
+  m_PrefabInstance: {fileID: 1858286271544231203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4948303442329565978 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6728960892794601017, guid: 1a3e421d764d58547abdf972543be653, type: 3}
+  m_PrefabInstance: {fileID: 1858286271544231203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a80b2805064cecbb7666d578d989eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResumeButton
+--- !u!114 &7911845636916704677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8360211654344306822, guid: 1a3e421d764d58547abdf972543be653, type: 3}
+  m_PrefabInstance: {fileID: 1858286271544231203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba85643897b4375936c7c7fbddd4313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RestartButton
+--- !u!114 &9043501630794206209 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7226321736474986786, guid: 1a3e421d764d58547abdf972543be653, type: 3}
+  m_PrefabInstance: {fileID: 1858286271544231203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image

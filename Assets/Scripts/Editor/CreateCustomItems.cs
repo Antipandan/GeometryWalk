@@ -23,6 +23,13 @@ namespace Editor
             CreateCustomUIElements<ButtonImageTextPairFactory>(command);
         }
 
+        [MenuItem("GameObject/UI (Canvas)/Slider - Text", false, 10)]
+
+        public static void CreateSliderText(MenuCommand command)
+        {
+            CreateCustomUIElements<ImageSliderTextFactory>(command);
+        }
+
         private static void CreateCustomUIElements<TCustomUiElement>(MenuCommand command)
             where TCustomUiElement : CustomUICreator, new()
         {

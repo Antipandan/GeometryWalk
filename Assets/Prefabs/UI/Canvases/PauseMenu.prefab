@@ -148,7 +148,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3657820819602915324}
-  - component: {fileID: 2565128444852926357}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -180,23 +179,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2565128444852926357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2502232584702339284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc5e4b2aabb4a2aa78384781440d18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  background: {fileID: 7226321736474986786}
-  text: {fileID: 3633515349515007128}
-  restartButton: {fileID: 8360211654344306822}
-  resumeButton: {fileID: 6728960892794601017}
-  exitMainMenuButton: {fileID: 511693275136195363}
 --- !u!1 &8455546697743071716
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,17 +355,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f460bec17c3637c468678840acf686c4, type: 3}
---- !u!114 &511693275136195363 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6396417568674202000, guid: f460bec17c3637c468678840acf686c4, type: 3}
-  m_PrefabInstance: {fileID: 6907754030195686067}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8475158612764cc38bd6492f9e308b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.UI.ExitMainMenuButton
 --- !u!114 &1983467128707662346 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4925800449650391225, guid: f460bec17c3637c468678840acf686c4, type: 3}
@@ -502,17 +473,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7008080299474836832, guid: 0065293488ed30b4c95b5f88ee8d8d55, type: 3}
   m_PrefabInstance: {fileID: 7027101546163364661}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6728960892794601017 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4388570815896886540, guid: 0065293488ed30b4c95b5f88ee8d8d55, type: 3}
-  m_PrefabInstance: {fileID: 7027101546163364661}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a80b2805064cecbb7666d578d989eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResumeButton
 --- !u!1001 &8882486035904581012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -615,14 +575,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8254708413413031328, guid: d606973c0ea111c4c96192eb675215f3, type: 3}
   m_PrefabInstance: {fileID: 8882486035904581012}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8360211654344306822 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1099333268189232402, guid: d606973c0ea111c4c96192eb675215f3, type: 3}
-  m_PrefabInstance: {fileID: 8882486035904581012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba85643897b4375936c7c7fbddd4313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RestartButton
