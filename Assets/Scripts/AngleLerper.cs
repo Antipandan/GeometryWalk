@@ -21,7 +21,6 @@ public class AngleLerper : MonoBehaviour
     
     public IEnumerator LerpClampRotation(GameObject lerpObject)
     {
-        Debug.Log($"lerp rotation");
         // ReSharper disable once PossibleLossOfFraction
         float currentRotationZ = lerpObject.transform.rotation.eulerAngles.z;
         float rounded = Mathf.Round(currentRotationZ / 45);
