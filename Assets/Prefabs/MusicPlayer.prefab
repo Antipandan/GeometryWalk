@@ -44,7 +44,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3d56c4d53704e4145970bd0454ab9478, type: 3}
+  m_Resource: {fileID: 8300000, guid: 9c5c71b79ff452640b417089f0bc0611, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMusicSoundPlayer
   audioSource: {fileID: 7213710877474327628}
+  mainMusicSettings: {fileID: 11400000, guid: 28179ec12b80946489b595b52da83443, type: 2}

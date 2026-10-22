@@ -62,7 +62,7 @@ public sealed class MainMusicSoundPlayer : MonoBehaviour
 
     public static MainMusicSoundPlayer CreateInstance()
     {
-        return instance == null ? null : new GameObject("MainSoundPlayer").AddComponent<MainMusicSoundPlayer>();
+        return new GameObject("MainSoundPlayer").AddComponent<MainMusicSoundPlayer>();
     }
 
     private void CheckReferences()

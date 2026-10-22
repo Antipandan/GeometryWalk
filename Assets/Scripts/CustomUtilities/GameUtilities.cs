@@ -9,6 +9,11 @@ public static class GameUtilities
         LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public static void LoadMainMenu()
+    {
+        LoadScene(0);
+    }
+
     public static void LoadScene(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);    

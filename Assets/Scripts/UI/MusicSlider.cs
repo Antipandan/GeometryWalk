@@ -9,6 +9,7 @@ public sealed class MusicSlider : MonoBehaviour
     [SerializeField] private TextMeshProUGUI musicText;
     [SerializeField] private Slider slider;
     [SerializeField] private MusicSettings musicSettings;
+    [SerializeField] private MainMusicSoundPlayer mainMusicPlayer;
 
     private void Awake()
     {
@@ -29,15 +30,15 @@ public sealed class MusicSlider : MonoBehaviour
     private void SubscribeEvents()
     {
         // singleton because it is easier than Events / eventbus
-        if (slider == null || MainMusicSoundPlayer.Instance == null) return;
+        if (slider == null || mainMusicPlayer == null) return;
         slider.onValueChanged.RemoveListener(ChangeVolume);
         slider.onValueChanged.AddListener(ChangeVolume);
     }
 
     private void UnsubscribeEvents()
     {
-        if (slider == null || MainMusicSoundPlayer.Instance == null) return;
-        slider.onValueChanged.RemoveListener(MainMusicSoundPlayer.Instance.ChangeVolume);
+        if (slider == null || mainMusicPlayer == null) return;
+        slider.onValueChanged.RemoveListener(ChangeVolume);
     }
     
     
@@ -45,29 +46,33 @@ public sealed class MusicSlider : MonoBehaviour
     {
         ReferenceValidator.CheckComponentForNull(ref musicText, gameObject, nameof(musicText));
         ReferenceValidator.CheckComponentForNull(ref slider, gameObject, nameof(slider));
+        if (mainMusicPlayer == null) mainMusicPlayer = FindAnyObjectByType<MainMusicSoundPlayer>();
     }
     
     // wrapper so we can change the saved music volume settings
     private void ChangeVolume(float volume)
     {
-        MainMusicSoundPlayer.Instance!.ChangeVolume(volume);
+        if (mainMusicPlayer != null) mainMusicPlayer.ChangeVolume(volume);
+        else mainMusicPlayer?.ChangeVolume(volume);
+        
+
         SetSavedMusicVolume();
     }
     
     private void SetSavedMusicVolume()
     {
-        if (musicSettings != null && MainMusicSoundPlayer.Instance != null)
+        if (musicSettings != null && mainMusicPlayer != null)
         {
-            musicSettings.Volume = MainMusicSoundPlayer.Instance.Volume;
+            musicSettings.Volume = mainMusicPlayer.Volume;
         }
     }
 
     private void ApplyMusicVolume()
     {
-        if (musicSettings != null && MainMusicSoundPlayer.Instance != null)
+        if (musicSettings != null && mainMusicPlayer != null)
         {
-            MainMusicSoundPlayer.Instance.ChangeVolume(musicSettings.Volume);
-            if (slider != null) slider.value = MainMusicSoundPlayer.Instance.Volume;
+            mainMusicPlayer.ChangeVolume(musicSettings.Volume);
+            if (slider != null) slider.value = mainMusicPlayer.Volume;
         }
     }
     
