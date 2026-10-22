@@ -37,16 +37,11 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
 
     private void UpdateIsGrounded(Collision2D collision2D)
     {
-        if (!isGrounded && validGroundLayers.HasLayer(collision2D.gameObject.layer))
-        {
-            if (this != null)
-            {
-                isGrounded = true;
-                if (angleLerper != null) StartCoroutine(angleLerper.LerpClampRotation(gameObject));
-                else ClampRotation();
-            }
-
-        }
+        if (isGrounded || !validGroundLayers.HasLayer(collision2D.gameObject.layer)) return;
+        if (this == null) return;
+        isGrounded = true;
+        if (angleLerper != null) StartCoroutine(angleLerper.LerpClampRotation(gameObject));
+        else ClampRotation();
     }
 
     private void ClampRotation()

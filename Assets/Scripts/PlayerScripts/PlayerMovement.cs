@@ -43,7 +43,7 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
         SetupValues();
     }
 
-    protected void OnValidate()
+    protected virtual void OnValidate()
     {
         SetupValues();
     }
@@ -111,7 +111,8 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
     {
         if (rb != null)
         {
-            rb.linearVelocity += new Vector2(0, UpwardsForce) * Time.deltaTime;
+            Debug.Log($"jump");
+            rb.linearVelocity += new Vector2(0, 100) * Time.deltaTime;
         }
     }
     

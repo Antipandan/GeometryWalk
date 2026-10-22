@@ -3,28 +3,29 @@ using CustomUtility;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ColliderHandler : MonoBehaviour
+public sealed class ColliderHandler : MonoBehaviour
 {
-    [SerializeField] protected GameObject attachedObject;
-    [SerializeField] protected UnityEvent onCollision;
-    [SerializeField] protected Collider2D playerCollider;
-    [SerializeField] protected LayerMask damageMask;
-    protected void Awake()
+    [SerializeField] private GameObject attachedObject;
+    [SerializeField] private UnityEvent onCollision;
+    [SerializeField] private Collider2D playerCollider;
+    [SerializeField] private LayerMask damageMask;
+
+    private void Awake()
     {
         CheckReferences();
     }
 
-    protected virtual void OnEnable()
+    private void OnEnable()
     {
         SubscribeEvents();
     }
 
-    protected virtual void OnDisable()
+    private void OnDisable()
     {
         UnSubScribeEvents();
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         PublishOnCollisionEnter2D(other);
         if (damageMask.HasLayer(other.gameObject.layer) || CheckCollisionDifferential(other))
@@ -33,7 +34,7 @@ public class ColliderHandler : MonoBehaviour
         }
     }
 
-    protected virtual bool CheckCollisionDifferential(Collision2D collision)
+    private bool CheckCollisionDifferential(Collision2D collision)
     {
         Transform other = collision.gameObject.transform;
         if (other == null) return false;
@@ -44,29 +45,29 @@ public class ColliderHandler : MonoBehaviour
         return Math.Sign(offsetDotProduct) == -1;
     }
 
-    protected virtual void PublishOnCollisionEnter2D(Collision2D other)
+    private void PublishOnCollisionEnter2D(Collision2D other)
     {
         onCollision?.Invoke();
         EventBus<Collision2D>.Raise(other);
     }
 
-    protected virtual void CheckReferences()
+    private void CheckReferences()
     {
         ReferenceValidator.CheckComponentForNull(ref playerCollider, gameObject, nameof(playerCollider));
         if (attachedObject == null) attachedObject = gameObject;
     }
 
-    protected virtual void SubscribeEvents()
+    private void SubscribeEvents()
     {
         
     }
 
-    protected virtual void UnSubScribeEvents()
+    private void UnSubScribeEvents()
     {
         
     }
 
-    protected virtual void PublishOnPlayerKilled()
+    private void PublishOnPlayerKilled()
     {
         EventBus<PlayerDeathEvent>.Raise();
     }

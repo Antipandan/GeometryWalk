@@ -3,26 +3,19 @@ using System;
 using CustomUtility;
 using Unity.Mathematics;
 
-public class Player : MonoBehaviour
+public class Player : PlayerMovementBase
 {
     [SerializeField] private LayerMask damageMask;
     [SerializeField] private EffectsImplementation explosionEffect;
     [SerializeField] private AudioClip deathSound;
     // PlayerMovement<PlayerMovementSO> gamla PlayerMovement<PlayerMovementFootSO> passar ej?
-    [SerializeField] private MovementBase playerMovement; // problem
     private EventBinding<PlayerDeathEvent> deathEvent;
-    
-    private void Awake()
-    {
-        CheckReferences();
-    }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         deathEvent = new EventBinding<PlayerDeathEvent>(KillPlayer);
         EventBus<PlayerDeathEvent>.Register(deathEvent);
-        MovementBase newPlayerMovement = GetComponent<FootPlayerMovement>();
-        playerMovement = newPlayerMovement;
+        base.OnEnable();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -45,7 +38,7 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void CheckReferences()
+    protected override void CheckReferences()
     {
         ReferenceValidator.CheckComponentForNull(ref explosionEffect, gameObject, nameof(explosionEffect));
         ReferenceValidator.CheckObjectForNull(ref deathSound, gameObject, nameof(deathSound));
@@ -64,13 +57,5 @@ public class Player : MonoBehaviour
     {
         if (deathSound != null) SoundPlayer.CreateInstance().PlaySound(deathSound);
     }
-
-    public void UpdatePlayerMovementScheme<TMovementType, TMovementTypeSO>(TMovementTypeSO movementData) where TMovementType : PlayerMovement<TMovementTypeSO>
-        where TMovementTypeSO : PlayerMovementSO
-    {
-        TMovementType newMovement = gameObject.AddComponent<TMovementType>();
-        newMovement.PlayerMovementData = movementData;
-        Destroy(playerMovement);
-        playerMovement = newMovement;
-    }
+    
 }
