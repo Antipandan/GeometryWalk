@@ -12,8 +12,7 @@ public abstract class BaseAiMovement<TMovementSO> : PlayerMovement<TMovementSO> 
     {
         if (movementActions.Count > 0)
         {
-            Debug.Log($"invoke");
-            movementActions.Dequeue().Invoke();
+            movementActions.Dequeue()?.Invoke();
         }
         MoveForward();
     }

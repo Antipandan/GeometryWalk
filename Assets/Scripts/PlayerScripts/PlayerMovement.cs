@@ -111,8 +111,7 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
     {
         if (rb != null)
         {
-            Debug.Log($"jump");
-            rb.linearVelocity += new Vector2(0, 100) * Time.deltaTime;
+            rb.linearVelocity += new Vector2(0, UpwardsForce) * Time.deltaTime;
         }
     }
     

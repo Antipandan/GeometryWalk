@@ -33,10 +33,7 @@ public interface IEventBindings<T>
         }
     }
 
-    public Type BindingType
-    {
-        get => typeof(T);
-    }
+    public Type BindingType => typeof(T);
 
     public void PublishOnEvent(T arg);
     

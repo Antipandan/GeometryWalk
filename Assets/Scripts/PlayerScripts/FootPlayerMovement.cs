@@ -9,7 +9,14 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
     [SerializeField] private LayerMask validGroundLayers;
     private float rotationSpeed = 0f;
     private bool isGrounded = false;
+    private EventBinding<Collision2D> onCollision2DEvent;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        onCollision2DEvent = new EventBinding<Collision2D>(UpdateIsGrounded);
+    }
+    
     protected override void CheckReferences()
     {
         base.CheckReferences();
@@ -64,7 +71,7 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
 
     protected override void SubscribeEvents()
     {
-        EventBus<Collision2D>.Register(new EventBinding<Collision2D>(UpdateIsGrounded));
+        EventBus<Collision2D>.Register(onCollision2DEvent);
     }
 
     private void RotatePlayerMidAir()
