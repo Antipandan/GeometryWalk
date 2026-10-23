@@ -82,4 +82,9 @@ public sealed class AiFootMovement : BaseAiMovement<PlayerMovementFootSO>
         base.UnSubscribeEvents();
         EventBus<Collision2D>.DeRegister(onCollision2DEvent);
     }
+    
+    protected override void ConstructNewPlayer()
+    {
+        return;
+    }
 }

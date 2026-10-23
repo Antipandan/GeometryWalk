@@ -89,4 +89,9 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
         isGrounded = false;
     }
     
+    protected override void ConstructNewPlayer()
+    {
+        return;
+    }
+    
 }

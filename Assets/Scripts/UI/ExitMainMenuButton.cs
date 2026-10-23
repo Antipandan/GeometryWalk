@@ -20,6 +20,7 @@ namespace DefaultNamespace.UI
 
         private void ExitMainMenuButtonPressed()
         {
+            GameUtilities.ResumeGame();
             GameUtilities.LoadMainMenu();
         }
     }

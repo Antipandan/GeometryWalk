@@ -123,5 +123,7 @@ public abstract class PlayerMovement<TPlayerMovementSo> : MovementBase where TPl
         this.rb = gameObject.GetComponent<Rigidbody2D>();
         if (this.rb == null) Logging.LogRegularStringMessage("rb not found", ErrorSeverity.Warning, gameObject);
     }
-    
+
+    protected abstract void ConstructNewPlayer();
+
 }

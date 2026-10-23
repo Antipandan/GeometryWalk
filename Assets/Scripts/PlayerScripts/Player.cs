@@ -8,6 +8,7 @@ public class Player : PlayerMovementBase
     [SerializeField] private LayerMask damageMask;
     [SerializeField] private EffectsImplementation explosionEffect;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private ColliderHandler colliderHandler;
     // PlayerMovement<PlayerMovementSO> gamla PlayerMovement<PlayerMovementFootSO> passar ej?
     private EventBinding<PlayerDeathEvent> deathEvent;
 
@@ -41,6 +42,7 @@ public class Player : PlayerMovementBase
     protected override void CheckReferences()
     {
         ReferenceValidator.CheckComponentForNull(ref explosionEffect, gameObject, nameof(explosionEffect));
+        ReferenceValidator.CheckComponentForNull(ref colliderHandler, gameObject, nameof(colliderHandler));
         ReferenceValidator.CheckObjectForNull(ref deathSound, gameObject, nameof(deathSound));
     }
 
@@ -51,6 +53,17 @@ public class Player : PlayerMovementBase
         {
             IDelayedDestruction.CreateInstance(explosionEffect, position);
         }
+    }
+
+    public virtual void DeactivateAllComponents()
+    {
+        GetComponent<MovementBase>().enabled = false;
+        AngleLerper lerper = GetComponent<AngleLerper>();
+        if (lerper != null) lerper.enabled = false;
+        if (colliderHandler != null) colliderHandler.enabled = false;
+        if (gameObject.TryGetComponent<BoxCollider2D>(out var boxCollider2D)) boxCollider2D.enabled = false;
+        enabled = false;
+
     }
 
     private void PlayDeathSound()

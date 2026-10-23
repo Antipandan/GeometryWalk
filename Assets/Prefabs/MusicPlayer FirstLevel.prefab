@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6929446176169306005, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1047.174
       objectReference: {fileID: 0}
     - target: {fileID: 6929446176169306005, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 770.75635
       objectReference: {fileID: 0}
     - target: {fileID: 6929446176169306005, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50,8 +50,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046767456139125084, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
       propertyPath: m_Name
-      value: MusicPlayer
+      value: MusicPlayer FirstLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 7213710877474327628, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d56c4d53704e4145970bd0454ab9478, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
