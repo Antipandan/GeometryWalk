@@ -67,13 +67,12 @@ public sealed class EndingPortal : MonoBehaviour
     private Vector2 CalculateEndingPosition()
     {
         float spriteWidth = objectRenderer.bounds.size.x;
-        Vector2 leftMostPosition = new Vector2(gameObject.transform.position.x -  spriteWidth / 2f, gameObject.transform.position.y);
+        Vector2 leftMostPosition = new Vector2(gameObject.transform.position.x - spriteWidth / 2f, gameObject.transform.position.y);
         return leftMostPosition;
     }
 
     private void OnPlayerFound(Player foundPlayer)
     {
-        Debug.Log($"found player");
         player = foundPlayer.gameObject;
         foundPlayer.DeactivateAllComponents();
         playerFoundPosition = foundPlayer.transform.position;

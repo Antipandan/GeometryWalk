@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicPlayer FirstLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 7046767456139125084, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7213710877474327628, guid: 927650d672bbc2648b36890e079eadcd, type: 3}
       propertyPath: m_Resource
       value: 

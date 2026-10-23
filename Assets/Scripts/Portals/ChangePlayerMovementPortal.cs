@@ -12,6 +12,7 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
     // just making sure this exists
     [SerializeField] protected Collider2D entrenceZone;
     [SerializeField] protected TMovementTypeSO playerMovement;
+    [SerializeField] protected PortalMovementChange movementChange = PortalMovementChange.ReplaceMovement;
     [SerializeField] [Tooltip("Add extra functionality if you want." +
                               " If anyone puts a game destroying function(s) here I'll mangle your spongebob ice cream")]
     protected UnityEvent onPlayerEnter;
@@ -53,9 +54,27 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
         if (entrenceZone != null) entrenceZone.isTrigger = true;
     }
 
+    protected void ChangeMovement()
+    {
+        switch (movementChange)
+        {
+            case PortalMovementChange.ReplaceMovement:
+                ChangeMovement();
+                break;
+            case PortalMovementChange.ReplaceGameObject:
+                ReplaceGameObject();
+                break;
+        }
+    }
+
     protected virtual void AddNewMovementComponentToPlayer(Player player)
     {
         player.UpdatePlayerMovementScheme<TMovementType, TMovementTypeSO>(playerMovement);
+    }
+
+    protected virtual void ReplaceGameObject()
+    {
+        
     }
     
     protected virtual void CheckReferences()

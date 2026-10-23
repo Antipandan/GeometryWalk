@@ -40,8 +40,8 @@ public sealed class ColliderHandler : MonoBehaviour
         if (other == null) return false;
         Vector2 dir = attachedObject.transform.position - other.position;
         float dotProduct = Vector2.Dot(Vector2.up, dir);
-        float playerColliderSizeX = playerCollider.bounds.extents.x;
-        float offsetDotProduct = dotProduct - playerColliderSizeX / 2f;
+        float playerColliderSizeY = playerCollider.bounds.extents.y;
+        float offsetDotProduct = dotProduct - playerColliderSizeY / 2f - other.GetComponent<Collider2D>().bounds.extents.y / 2f;
         return Math.Sign(offsetDotProduct) == -1;
     }
 

@@ -5,7 +5,7 @@ using CustomUtility;
 public class FollowTarget : MonoBehaviour
 {
     [SerializeField] private Transform target;
-
+    [SerializeField] private Vector2 offset = Vector2.zero;
 
     private void Awake()
     {
@@ -25,7 +25,14 @@ public class FollowTarget : MonoBehaviour
     private void Follow()
     {
         if (target == null) return;
-        gameObject.transform.position = new Vector3(target.position.x, gameObject.transform.position.y, -10);
+        gameObject.transform.position = new Vector3(target.position.x + offset.x, gameObject.transform.position.y + offset.y, -10);
+    }
+
+    public void CalculateOffset()
+    {
+        if (target == null) return;
+        Vector2 deltaDistance = gameObject.transform.position - target.position;
+        offset.x = deltaDistance.x;
     }
 
 }
