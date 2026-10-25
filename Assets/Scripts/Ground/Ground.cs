@@ -14,11 +14,13 @@ public class Ground : MonoBehaviour
     
     private void OnValidate()
     {
+        #if UNITY_EDITOR
         // janky way of slowing down OnValidate. Maybe use customEditor?
         validateDelay = (float)EditorApplication.timeSinceStartup + 0.05f;
 
         EditorApplication.update -= ValidateEditorData;
         EditorApplication.update += ValidateEditorData;
+        #endif
     }
     
     public static Ground InstantiateGround()

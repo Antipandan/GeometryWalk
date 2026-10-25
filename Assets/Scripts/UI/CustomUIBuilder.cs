@@ -30,26 +30,35 @@ public static class CustomUIBuilder
     [CanBeNull]
     public static Sprite LoadDefaultUIBackgroundSprite(bool LogResults = true)
     {
+        #if UNITY_EDITOR
         Sprite loadedSprite = AssetDatabase.LoadAssetAtPath<Sprite>
             (GameConstants.defaultBackGroundPath);
         if (loadedSprite == null && LogResults) Logging.LogNullReferenceError("Default UI Sprite", ErrorSeverity.Error);
         return loadedSprite;
+        #endif
+        return null;
     }
 
     public static Sprite LoadDefaultUIIconSprite(bool LogResults = true)
     {
+        #if UNITY_EDITOR
         Sprite icon = AssetDatabase.LoadAssetAtPath<Sprite>
             (GameConstants.defaultIconPath);
         if (LogResults && icon == null)  Logging.LogNullReferenceError("Default UI Icon Sprite", ErrorSeverity.Error);
         return icon;
+        #endif
+        return null;
     }
 
     public static Sprite LoadDefaultSliderBackground(bool LogResults = true)
     {
+        #if UNITY_EDITOR
         Sprite background = AssetDatabase.LoadAssetAtPath<Sprite>(
             GameConstants.defaultSliderBackground);
         if (LogResults && background == null) Logging.LogNullReferenceError("Default UI Icon Sprite", ErrorSeverity.Error);
         return background;
+        #endif
+        return null;
     }
     
 }

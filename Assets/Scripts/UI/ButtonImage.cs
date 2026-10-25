@@ -38,6 +38,7 @@ public class ButtonImage : CustomUICreator
 
     private static void AddNecessaryChildComponents(GameObject go)
     {
+        #if UNITY_EDITOR
         Image icon = go.AddComponent<Image>();
         Sprite loadedIcon = AssetDatabase.LoadAssetAtPath<Sprite>
             (GameConstants.defaultIconPath);
@@ -45,6 +46,7 @@ public class ButtonImage : CustomUICreator
             Debug.Log("This asset could not be found", icon.gameObject);});
         icon.sprite ??= loadedIcon;
         icon.color = Color.black;
+        #endif
     }
 
     #endregion

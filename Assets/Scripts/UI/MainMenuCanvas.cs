@@ -29,7 +29,7 @@ public sealed class MainMenuCanvas : MonoBehaviour
 
     private void CheckReferences()
     {
-        ReferenceValidator.CheckUnityObjectForNull(ref itemHolder, nameof(itemHolder), ErrorSeverity.ScenePivotal);
+        ReferenceValidator.CheckUnityObjectForNull(ref itemHolder, nameof(itemHolder));
         ReferenceValidator.CheckComponentForNull(ref  gameText, gameObject, nameof(gameText));
         ReferenceValidator.CheckComponentForNull(ref playButton, gameObject, nameof(playButton));
         ReferenceValidator.CheckComponentForNull(ref settingsButton, gameObject, nameof(settingsButton));

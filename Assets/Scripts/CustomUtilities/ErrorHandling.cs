@@ -25,9 +25,10 @@ namespace CustomUtility
         /// <returns>True if user clicked button. False if not. Users don't have to use the return value</returns>
         public static bool DisplayWarning(string warningMessage)
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             return EditorUtility.DisplayDialog("Warning", warningMessage, "OK");
-#endif
+            #endif
+            return true;
         }
 
         /// <summary>

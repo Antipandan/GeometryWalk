@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using System.Runtime.CompilerServices;
-using UnityEditor.Build;
 using Object = UnityEngine.Object;
 
 
@@ -158,18 +157,6 @@ namespace CustomUtility
         #region Private Functions
 
         /// <summary>
-        /// Prevents the game from being built
-        /// </summary>
-        /// <exception cref="BuildFailedException"></exception>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void ThrowStandardBuildError()
-        {
-#if UNITY_EDITOR
-            throw new BuildFailedException("Can Not build game because of missing reference(s)");
-#endif
-        }
-
-        /// <summary>
         /// Method Containing standard responses to parameters defined in method signature. Logs a standardized message
         /// in the unity console hinting at the fact that said error is not serious
         /// </summary>
@@ -305,7 +292,7 @@ namespace CustomUtility
         /// <param name="parentObject">UnityEngine.Object where this error occured. Consider providing a reference to simplify debugging</param>
         private static void LogPivotalStringMessage(string errorObjectName, ErrorSubject error,
             Object parentObject = null)
-#if UNITY_EDITOR
+
         {
             switch (error)
             {
@@ -344,7 +331,6 @@ namespace CustomUtility
                                    $" this error Must be investigated!***", parentObject);
                     break;
             }
-#endif
         }
 
         /// <summary>
@@ -402,7 +388,6 @@ namespace CustomUtility
         /// <param name="parentObject">Where does this message come from? E.g. what GameObject. Can be left null</param>
         private static void LogStandardStringMessageSwitch(string message, ErrorSeverity severity = ErrorSeverity.None,
             Object parentObject = null)
-#if UNITY_EDITOR
         {
             switch (severity)
             {
@@ -423,8 +408,8 @@ namespace CustomUtility
                     break;
             }
         }
-#endif
 
         #endregion
     }
+
 }
