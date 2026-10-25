@@ -10,6 +10,8 @@ public sealed class EndingPortal : MonoBehaviour
     [SerializeField] private Collider2D objectCollider;
     [SerializeField] private FindPlayer playerDetectionZone;
     [SerializeField] [Range(10f, 60000f)] [Tooltip("Time meassured in milliseconds")] private float travelTime = 10f;
+    [SerializeField] private AudioClip endingSound;
+    private float delayTime = 0f;
     private GameObject player;
     private Vector2 playerFoundPosition;
     private static EndingPortal instance;
@@ -32,7 +34,15 @@ public sealed class EndingPortal : MonoBehaviour
 
     private void OnEnable()
     {
-        SubscribeEvents();    
+        SubscribeEvents();
+        if (endingSound != null) delayTime = endingSound.length;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!other.gameObject.TryGetComponent<Player>(out _)) return;
+        if (endingSound == null) return;
+        SoundPlayer.CreateInstance().PlaySound(endingSound);
     }
 
     private IEnumerator LerpPosition()
@@ -44,7 +54,7 @@ public sealed class EndingPortal : MonoBehaviour
         {
             if (player == null)
             {
-                EventBus<GameWonEvent>.Raise();
+                StartCoroutine(DelayEnding());
                 yield break;
             }
             float ratio = (elapsedTime / travelTimeSeconds);
@@ -52,11 +62,17 @@ public sealed class EndingPortal : MonoBehaviour
             elapsedTime += Time.deltaTime;
             if (ratio >= 1f)
             {
-                EventBus<GameWonEvent>.Raise();
+                StartCoroutine(DelayEnding());
                 yield break;
             }
             yield return null;
         }
+    }
+
+    private IEnumerator DelayEnding()
+    {
+        yield return new WaitForSeconds(delayTime);
+        EventBus<GameWonEvent>.Raise();
     }
 
     private void OnDisable()

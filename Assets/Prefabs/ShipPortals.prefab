@@ -75,7 +75,7 @@ Transform:
   m_GameObject: {fileID: 4811574651308731416}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.98, y: 0, z: 0}
+  m_LocalPosition: {x: 21.9, y: -3.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -154,9 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChangeFootMovementPortal
   entrenceZone: {fileID: 8662308671647319164}
   playerMovement: {fileID: 11400000, guid: 7544561aaa1420d4ba2510695f838fd0, type: 2}
-  onPlayerEnter:
-    m_PersistentCalls:
-      m_Calls: []
+  movementChange: 2
+  playerPrefab: {fileID: 5316594236908209710, guid: 8d7150e220b56284081b0e4fe5b3e66b, type: 3}
 --- !u!70 &8662308671647319164
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -301,21 +300,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChangeShipMovementPortal
   entrenceZone: {fileID: 6319438943462430996}
   playerMovement: {fileID: 11400000, guid: 35cb07abeb764584a83d8e86412a77b5, type: 2}
-  onPlayerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 590f7b7327ad4a14e9dbca0b8b58ea6d, type: 2}
-        m_TargetAssemblyTypeName: CustomUtility.SceneUtilities, Assembly-CSharp
-        m_MethodName: ResetRotation
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  movementChange: 2
+  playerPrefab: {fileID: 4632347907804080637, guid: 34d9c1218d85dc148a41d288b94bb726, type: 3}
 --- !u!70 &6319438943462430996
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

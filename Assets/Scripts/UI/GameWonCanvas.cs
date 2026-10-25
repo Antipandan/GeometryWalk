@@ -40,7 +40,6 @@ public sealed class GameWonCanvas : MonoBehaviour
 
     private void GameWon()
     {
-        Debug.Log($"game won!");
         if (holder != null) holder.SetActive(true);
     }
 

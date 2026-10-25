@@ -57,6 +57,13 @@ public class SoundPlayer : MonoBehaviour, IDelayedDestruction
         DestructionDelay = clip.length;
         StartCoroutine(DestroyObjects());
     }
+
+    private void PlaySound()
+    {
+        audioSource.Play();
+        DestructionDelay = audioSource.clip.length;
+        StartCoroutine(DestroyObjects());
+    }
     
     private void CheckReferences()
     {

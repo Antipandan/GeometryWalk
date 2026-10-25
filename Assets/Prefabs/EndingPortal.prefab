@@ -5121,3 +5121,4 @@ MonoBehaviour:
   objectCollider: {fileID: 104592012209410064}
   playerDetectionZone: {fileID: 1582459184936868331}
   travelTime: 2000
+  endingSound: {fileID: 0}
