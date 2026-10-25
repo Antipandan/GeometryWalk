@@ -14,6 +14,7 @@ If players press jump at the right time when the player is travelling on foot, t
 ## Showcase
 
 <img src="Assets/Resources/GameShowcase.gif" alt="Game Showcase">
+
 ## License
 Copyright (c) 2026 @Antipandan
 
