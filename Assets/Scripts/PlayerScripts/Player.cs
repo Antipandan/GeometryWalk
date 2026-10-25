@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Diagnostics;
 using CustomUtility;
 using Unity.Mathematics;
 
@@ -55,7 +56,7 @@ public class Player : PlayerMovementBase
         }
     }
 
-    public virtual void DeactivateAllComponents()
+    public void DeactivateAllComponents()
     {
         GetComponent<MovementBase>().enabled = false;
         AngleLerper lerper = GetComponent<AngleLerper>();
@@ -63,7 +64,23 @@ public class Player : PlayerMovementBase
         if (colliderHandler != null) colliderHandler.enabled = false;
         if (gameObject.TryGetComponent<BoxCollider2D>(out var boxCollider2D)) boxCollider2D.enabled = false;
         enabled = false;
+    }
 
+    public void MutateMovement<TMovement, TMovementSO>(TMovement desiredMovementScript, TMovementSO movementData) where TMovementSO : PlayerMovementSO
+        where TMovement : PlayerMovement<TMovementSO>
+    {
+        if (desiredMovementScript.GetType() == typeof(FootPlayerMovement)) MutateFootMovement();
+        else if (desiredMovementScript.GetType() == typeof(ShipPlayerMovement)) MutateShipMovement();
+    }
+
+    private void MutateFootMovement()
+    {
+        
+    }
+
+    private void MutateShipMovement()
+    {
+        
     }
 
     private void PlayDeathSound()

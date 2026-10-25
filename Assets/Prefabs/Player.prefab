@@ -188,6 +188,7 @@ MonoBehaviour:
     m_Bits: 8
   explosionEffect: {fileID: 8130748834579384420, guid: 88a7958e455c9f141bd3ce213dd6c17a, type: 3}
   deathSound: {fileID: 8300000, guid: 64a302bd98146684883699c30059c2d2, type: 3}
+  colliderHandler: {fileID: 2065012424658044366}
 --- !u!114 &5242079563106266025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,7 @@ GameObject:
   - component: {fileID: 1842329709765500280}
   - component: {fileID: 608881306121613689}
   - component: {fileID: 2065012424658044366}
+  - component: {fileID: 1245224003490787079}
   m_Layer: 7
   m_Name: PlayerCollider
   m_TagString: Untagged
@@ -262,7 +264,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9431d7121a3c0164985bf0f297e0c54c, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -317,4 +319,20 @@ MonoBehaviour:
   playerCollider: {fileID: 608881306121613689}
   damageMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+--- !u!114 &1245224003490787079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578888871754599466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef74902106144158fab2b7967761f39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NegateTransformValues
+  parentGameObject: {fileID: 310594811314049290}
+  negateTransformPosition: 0
+  negateRotation: 1
+  negateScale: 0

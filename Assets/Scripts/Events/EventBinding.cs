@@ -23,6 +23,7 @@ public class EventBinding<T> : IEventBindings<T>
         this.onEvent = @event;
         this.onEventNoArgs = eventNoArgs;
     }
+    
 
     public void RemoveDelegate(Action<T> @delegate)
     {

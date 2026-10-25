@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using CustomUtility;
+using DefaultNamespace.Events;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine.Events;
+using Object = UnityEngine.Object;
 
 public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO> : MonoBehaviour
     where TMovementType : PlayerMovement<TMovementTypeSO> where TMovementTypeSO : PlayerMovementSO
@@ -13,8 +15,9 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
     [SerializeField] protected Collider2D entrenceZone;
     [SerializeField] protected TMovementTypeSO playerMovement;
     [SerializeField] protected PortalMovementChange movementChange = PortalMovementChange.ReplaceMovement;
-    [SerializeField] [Tooltip("Add extra functionality if you want." +
-                              " If anyone puts a game destroying function(s) here I'll mangle your spongebob ice cream")]
+    [SerializeField] protected Player playerPrefab;
+    [Tooltip("Add extra functionality if you want." +
+             " If anyone puts a game destroying function(s) here I'll mangle your spongebob ice cream")]
     protected UnityEvent onPlayerEnter;
     // hotfix for when we are swapping components in the portal >:(
     private bool hasBeenTriggered = false;
@@ -40,7 +43,7 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
         {
             onPlayerEnter?.Invoke();
             hasBeenTriggered = true;
-            AddNewMovementComponentToPlayer(player);
+            ChangeMovement(player);
         }
     }
     
@@ -54,27 +57,31 @@ public abstract class ChangePlayerMovementPortal<TMovementType, TMovementTypeSO>
         if (entrenceZone != null) entrenceZone.isTrigger = true;
     }
 
-    protected void ChangeMovement()
+    protected void ChangeMovement(Player player)
     {
         switch (movementChange)
         {
             case PortalMovementChange.ReplaceMovement:
-                ChangeMovement();
+                AddNewMovementComponentToPlayer(player);
                 break;
             case PortalMovementChange.ReplaceGameObject:
-                ReplaceGameObject();
+                ReplaceGameObject(player);
                 break;
         }
     }
 
     protected virtual void AddNewMovementComponentToPlayer(Player player)
     {
+        player.transform.rotation = Quaternion.identity;
         player.UpdatePlayerMovementScheme<TMovementType, TMovementTypeSO>(playerMovement);
     }
 
-    protected virtual void ReplaceGameObject()
+    protected virtual void ReplaceGameObject(Player player)
     {
-        
+        Player newPlayer = Instantiate(playerPrefab, player.transform.position, player.transform.rotation);
+        FollowObjectChanged newFollowObject = new FollowObjectChanged(newPlayer.gameObject);
+        EventBus<FollowObjectChanged>.Raise(newFollowObject);
+        Destroy(player.gameObject);
     }
     
     protected virtual void CheckReferences()
