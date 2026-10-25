@@ -50,5 +50,4 @@ public class EffectsImplementation : MonoBehaviour, IDelayedDestruction
         yield return new WaitForSeconds(destructionDelay);
         Destroy(gameObject);
     }
-
 }

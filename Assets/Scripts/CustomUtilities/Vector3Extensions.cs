@@ -8,6 +8,5 @@ namespace CustomUtility
         {
             return new Vector3(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z);
         }
-        
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ButtonImage : CustomUICreator
 {
-    
     #region PublicMethods
 
     public override GameObject CreateInstance()

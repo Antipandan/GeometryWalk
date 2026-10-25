@@ -48,7 +48,5 @@ public static class EventBus<T>
     {
         SceneManager.sceneUnloaded -= ClearAllBindings;
         SceneManager.sceneUnloaded += ClearAllBindings;
-
     }
-    
 }

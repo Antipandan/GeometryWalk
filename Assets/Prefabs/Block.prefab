@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1905473870812989804}
   - component: {fileID: 518290764478825629}
   - component: {fileID: 6707105698495270015}
-  - component: {fileID: 6360882044239337405}
   m_Layer: 6
   m_Name: Block
   m_TagString: Untagged
@@ -153,16 +152,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.29, y: 1.27}
   m_EdgeRadius: 0
---- !u!114 &6360882044239337405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5667289501703343404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b5e71cf589240e69b2506df6534d2c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.Culling
-  animator: {fileID: 0}
