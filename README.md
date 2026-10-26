@@ -5,7 +5,7 @@ Game made with Unity version 6000.3.9f1. The game has soley been tested on Windo
 
 ## Download
 Download build for respective compatible OS. Extract downloaded folder into appropriate place. Run "GeometryWalk.exe"
-if on Windows or "GeometeyWalk.x86_64" on Linux. 
+if on Windows or "GeometryWalk.x86_64" on Linux. 
 
 ## Known bugs
 
