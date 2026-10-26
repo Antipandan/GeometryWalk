@@ -7,6 +7,7 @@ public sealed class ColliderHandler : MonoBehaviour
 {
     [SerializeField] private GameObject attachedObject;
     [SerializeField] private UnityEvent onCollision;
+    [SerializeField] private UnityEvent onCollisionExit;
     [SerializeField] private Collider2D playerCollider;
     [SerializeField] private LayerMask damageMask;
 
@@ -34,6 +35,11 @@ public sealed class ColliderHandler : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        PublishOnCollisionExit2D(other);
+    }
+
     private bool CheckCollisionDifferential(Collision2D collision)
     {
         Transform other = collision.gameObject.transform;
@@ -49,6 +55,12 @@ public sealed class ColliderHandler : MonoBehaviour
     {
         onCollision?.Invoke();
         EventBus<Collision2D>.Raise(other);
+    }
+
+    private void PublishOnCollisionExit2D(Collision2D other)
+    {
+        onCollisionExit?.Invoke();
+        EventBus<Collision2DEnd>.Raise(new Collision2DEnd(other));
     }
 
     private void CheckReferences()

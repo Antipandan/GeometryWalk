@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using CustomUtility;
 using UnityEngine;
 
@@ -10,11 +11,13 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
     private float rotationSpeed = 0f;
     private bool isGrounded = false;
     private EventBinding<Collision2D> onCollision2DEvent;
+    private EventBinding<Collision2DEnd> onCollisionEnd2DEvent;
 
     protected override void Awake()
     {
         base.Awake();
         onCollision2DEvent = new EventBinding<Collision2D>(UpdateIsGrounded);
+        onCollisionEnd2DEvent = new EventBinding<Collision2DEnd>(IsNoLongerGrounded);
     }
     
     protected override void CheckReferences()
@@ -51,6 +54,12 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
         else ClampRotation();
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void IsNoLongerGrounded()
+    {
+        isGrounded = false;
+    }
+
     private void ClampRotation()
     {
         // ReSharper disable once PossibleLossOfFraction
@@ -72,6 +81,7 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
     protected override void SubscribeEvents()
     {
         EventBus<Collision2D>.Register(onCollision2DEvent);
+        EventBus<Collision2DEnd>.Register(onCollisionEnd2DEvent);
     }
 
     private void RotatePlayerMidAir()
@@ -84,7 +94,9 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
         if (!isGrounded) return;
         if (rb != null)
         {
+            Debug.Log($"jump");
             rb.linearVelocity += new Vector2(0, UpwardsForce);
+            isGrounded = false;
         }
         isGrounded = false;
     }
