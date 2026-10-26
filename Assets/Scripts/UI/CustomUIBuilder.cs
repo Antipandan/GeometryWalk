@@ -47,6 +47,7 @@ public static class CustomUIBuilder
         if (LogResults && icon == null)  Logging.LogNullReferenceError("Default UI Icon Sprite", ErrorSeverity.Error);
         return icon;
         #endif
+        // will cause an error if we dont return null here. C# says this return is redundant. That is not true!!
         return null;
     }
 

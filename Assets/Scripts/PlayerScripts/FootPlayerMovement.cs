@@ -94,7 +94,6 @@ public sealed class FootPlayerMovement : PlayerMovement<PlayerMovementFootSO>
         if (!isGrounded) return;
         if (rb != null)
         {
-            Debug.Log($"jump");
             rb.linearVelocity += new Vector2(0, UpwardsForce);
             isGrounded = false;
         }
